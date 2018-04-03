@@ -2,7 +2,10 @@
 
 Este é um template básico, que pode ser adaptado para qualquer projeto.
 
-## Principais Recursos
+## Tecnologias Utilizadas
+
+* [Angular 5]
+* [PrimeNG]
 
 
 ## Como Usar
