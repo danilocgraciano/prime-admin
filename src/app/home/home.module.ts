@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from "./home/home.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { AuthModule } from "../auth/auth.module";
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
 
 @NgModule({
   imports: [
@@ -12,7 +14,9 @@ import { AuthModule } from "../auth/auth.module";
   exports: [HomeComponent],
   declarations: [
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    SidebarComponent,
+    SidebarItemComponent
   ]
 })
 export class HomeModule { }

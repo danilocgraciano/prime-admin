@@ -1,0 +1,18 @@
+.nav-link {
+font-weight: 500;
+color: #333;
+}
+
+.nav-link .feather {
+margin-right: 4px;
+color: #999;
+}
+
+.nav-link.active {
+color: #007bff;
+}
+
+.nav-link:hover .feather,
+.nav-link.active .feather {
+color: inherit;
+}

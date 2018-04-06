@@ -1,0 +1,11 @@
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+  <div class="sidebar-sticky">
+
+    <ul *ngFor="let item of menu" class="nav flex-column">
+
+      <app-sidebar-item [menuItem]=item></app-sidebar-item>
+
+    </ul>
+
+  </div>
+</nav>
