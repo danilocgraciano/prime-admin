@@ -4,7 +4,7 @@
     "sEmptyTable": "Nenhum registro encontrado",
     "sInfo": "Mostrando _START_ - _END_ de _TOTAL_",
     "sInfoEmpty": "Nenhum registro encontrado",
-    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+    "sInfoFiltered": "",
     "sInfoPostFix": "",
     "sInfoThousands": ".",
     "sLengthMenu": "_MENU_ ",
