@@ -6,13 +6,14 @@ import { AuthModule } from "../auth/auth.module";
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
 import { TableComponent } from './table/table.component';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { RestTableComponent } from './rest-table/rest-table.component';
+import { routing } from "../app.routing";
 
 @NgModule({
   imports: [
     CommonModule,
     AuthModule,
-    NgxPaginationModule
+    routing
   ],
   exports: [HomeComponent],
   declarations: [
@@ -20,7 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NavbarComponent,
     SidebarComponent,
     SidebarItemComponent,
-    TableComponent
+    TableComponent,
+    RestTableComponent
   ]
 })
 export class SharedModule { }

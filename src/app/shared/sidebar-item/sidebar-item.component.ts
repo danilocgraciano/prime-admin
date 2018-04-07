@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-sidebar-item',
@@ -9,9 +10,14 @@ export class SidebarItemComponent implements OnInit {
 
   @Input() menuItem: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onClick(event) {
+    event.preventDefault();
+    this.router.navigate([this.menuItem.url]);
   }
 
 }

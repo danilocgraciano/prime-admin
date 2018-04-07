@@ -1,5 +1,5 @@
 <li class="nav-item">
-  <a [ngClass]="{ 'nav-link': true,'active': menuItem.selected}" [href]=menuItem.url>
+  <a [ngClass]="{ 'nav-link': true,'active': menuItem.selected}" [href]=menuItem.url (click)="onClick($event)">
       <span [class]=menuItem.icon></span>
       {{menuItem.title}} 
     </a>
