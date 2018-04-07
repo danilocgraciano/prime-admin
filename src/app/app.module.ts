@@ -5,7 +5,7 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { AuthModule } from "./auth/auth.module";
 import { AuthService } from "./auth/auth.service";
-import { HomeModule } from "./home/home.module";
+import { SharedModule } from "./shared/home.module";
 
 
 @NgModule({
@@ -15,7 +15,7 @@ import { HomeModule } from "./home/home.module";
   imports: [
     BrowserModule,
     AuthModule,
-    HomeModule,
+    SharedModule,
     routing
   ],
   providers: [AuthService],

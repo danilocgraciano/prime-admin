@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractTableComponent } from "./abstract.table.component";
 declare var $;
 
 @Component({
@@ -6,7 +7,7 @@ declare var $;
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
+export class TableComponent extends AbstractTableComponent implements OnInit {
 
   header: Array<string> = ['ID', 'Usuário', 'E-mail'];
 
@@ -28,20 +29,8 @@ export class TableComponent implements OnInit {
     { id: 16, usuario: 'Vander', email: 'vander@compels.net' }
   ]
 
-  constructor() { }
-
   ngOnInit() {
-
-    $(document).ready(function () {
-      $('#myTable').DataTable({
-        "searching": false,
-        "pageLength": 10,
-        "language": {
-          "url": "../../assets/Portuguese-Brasil.json"
-        },
-        "dom": 't<"d-flex justify-content-between"<"pagination pagination-sm"p>l<""i>>'
-      });
-    });
+    this.init();
   }
 
 

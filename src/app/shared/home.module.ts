@@ -23,4 +23,4 @@ import { NgxPaginationModule } from 'ngx-pagination';
     TableComponent
   ]
 })
-export class HomeModule { }
+export class SharedModule { }

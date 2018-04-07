@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { LoginComponent } from "./auth/login/login.component";
-import { HomeComponent } from "./home/home/home.component";
-import { TableComponent } from "./home/table/table.component";
+import { HomeComponent } from "./shared/home/home.component";
+import { TableComponent } from "./shared/table/table.component";
 
 const APP_ROUTES: Routes = [
     { path: '', component: LoginComponent },
