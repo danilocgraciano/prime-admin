@@ -16,7 +16,7 @@ export class RestTableComponent extends AbstractRestTableComponent implements On
   ];
 
   ngOnInit() {
-    this.init("myTable", false, 10, "http://192.168.89.2:8080/uf", this.columns);
+    this.init("myTable", false, 10, "/api/uf", this.columns);
   }
 
 }
