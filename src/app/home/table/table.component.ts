@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $;
 
 @Component({
   selector: 'app-table',
@@ -30,7 +31,18 @@ export class TableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    $(document).ready(function () {
+      $('#myTable').DataTable({
+        "searching": false,
+        "pageLength": 10,
+        "language": {
+          "url": "../../assets/Portuguese-Brasil.json"
+        },
+        "dom": 't<"d-flex justify-content-between"<"pagination pagination-sm"p>l<""i>>'
+      });
+    });
   }
-  
+
 
 }

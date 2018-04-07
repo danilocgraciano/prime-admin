@@ -1,15 +1,14 @@
-<table class="table table-hover table-sm">
+<table id="myTable" class="table table-hover table-sm">
   <thead>
     <tr>
       <th scope="col" *ngFor="let column of header">{{column}}</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of data | paginate: { itemsPerPage: 10, currentPage: p }">
+    <tr *ngFor="let row of data">
       <td>{{row.id}}</td>
       <td>{{row.usuario}}</td>
       <td>{{row.email}}</td>
     </tr>
   </tbody>
 </table>
-<pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próxima"></pagination-controls>
