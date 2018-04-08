@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Injectable()
 export class AuthService {
 
-  redirectUrl: string = 'home';
+  redirectUrl: string = '';
 
   constructor(private router: Router) { }
 
@@ -16,7 +16,7 @@ export class AuthService {
 
   logout(): void {
     //destroy session
-    this.router.navigate(['']);
+    this.router.navigate(['login']);
   }
 
 }
