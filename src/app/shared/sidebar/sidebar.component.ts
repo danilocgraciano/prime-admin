@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   menu: Array<any> = [
-    { title: 'Home', icon: '', selected: true, url: '' },
     { title: 'Simple Table', icon: '', selected: true, url: 'simpleTable' },
     { title: 'Rest Table', icon: '', selected: false, url: 'restTable' }
   ]
