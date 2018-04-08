@@ -9,9 +9,10 @@ export const APP_ROUTES: Routes = [
     {
         path: '',
         component: HomeComponent,
+        data: { title: 'Home' },
         children: [
-            { path: 'table', component: TableComponent },
-            { path: 'restTable', component: RestTableComponent }
+            { path: 'simpleTable', component: TableComponent, data: { title: 'Simple Table' }, },
+            { path: 'restTable', component: RestTableComponent, data: { title: 'Rest Table' }, }
         ]
     },
     { path: 'login', component: LoginComponent },

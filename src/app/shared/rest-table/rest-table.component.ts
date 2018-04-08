@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractTableComponent } from '../table/abstract.table.component';
 import { DataTableSetup } from '../table/DataTableSetup';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-rest-table',
@@ -8,6 +10,11 @@ import { DataTableSetup } from '../table/DataTableSetup';
   styleUrls: ['./rest-table.component.css']
 })
 export class RestTableComponent extends AbstractTableComponent implements OnInit {
+
+  constructor(private route: ActivatedRoute, private router: Router, private titleService: Title) {
+    super();
+    this.titleService.setTitle(route.snapshot.data['title']);
+  }
 
   columns: Array<any> = [
     { "data": "id" },

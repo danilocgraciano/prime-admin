@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractTableComponent } from "./abstract.table.component";
 import { DataTableSetup } from './DataTableSetup';
+import { Title } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 declare var $;
 
 @Component({
@@ -9,6 +11,11 @@ declare var $;
   styleUrls: ['./table.component.css']
 })
 export class TableComponent extends AbstractTableComponent implements OnInit {
+
+  constructor(private route:ActivatedRoute, private router: Router, private titleService: Title) {
+    super();
+    this.titleService.setTitle(route.snapshot.data['title']);
+  }
 
   header: Array<string> = ['ID', 'Usuário', 'E-mail'];
 
@@ -32,21 +39,6 @@ export class TableComponent extends AbstractTableComponent implements OnInit {
 
   buttons: Array<any> = [
     {
-      text: 'Novo',
-      action: function (e, dt, node, config) {
-        alert('Novo activated');
-      }
-    }, {
-      text: 'Editar',
-      action: function (e, dt, node, config) {
-        alert('Editar activated');
-      }
-    }, {
-      text: 'Excluir',
-      action: function (e, dt, node, config) {
-        alert('Excluir activated');
-      }
-    }, {
       extend: 'excelHtml5',
       exportOptions: {
         columns: ':visible'
