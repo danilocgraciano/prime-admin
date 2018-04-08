@@ -20,4 +20,10 @@ export class SidebarItemComponent implements OnInit {
     this.router.navigate([this.menuItem.url]);
   }
 
+  isActive(): boolean {
+    if (this.router.url.replace("/", "") === this.menuItem.url)
+      return true;
+    return false;
+  }
+
 }

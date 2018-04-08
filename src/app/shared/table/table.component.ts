@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractTableComponent } from "./abstract.table.component";
+import { DataTableSetup } from './DataTableSetup';
 declare var $;
 
 @Component({
@@ -27,10 +28,52 @@ export class TableComponent extends AbstractTableComponent implements OnInit {
     { id: 14, usuario: 'Éliphas', email: 'eliphas@compels.net' },
     { id: 15, usuario: 'Pedro', email: 'pedro@compels.net' },
     { id: 16, usuario: 'Vander', email: 'vander@compels.net' }
-  ]
+  ];
+
+  buttons: Array<any> = [
+    {
+      text: 'Novo',
+      action: function (e, dt, node, config) {
+        alert('Novo activated');
+      }
+    }, {
+      text: 'Editar',
+      action: function (e, dt, node, config) {
+        alert('Editar activated');
+      }
+    }, {
+      text: 'Excluir',
+      action: function (e, dt, node, config) {
+        alert('Excluir activated');
+      }
+    }, {
+      extend: 'excelHtml5',
+      exportOptions: {
+        columns: ':visible'
+      }
+    }, {
+      extend: 'pdfHtml5',
+      exportOptions: {
+        columns: ':visible'
+      }
+    },
+    {
+      extend: 'colvis',
+      text: 'Exibir'
+    }];
 
   ngOnInit() {
-    this.init();
+
+    this.init("myTable", new DataTableSetup({
+      buttons: this.buttons,
+      columnDefs: [
+        {
+          targets: [0],
+          visible: false,
+          searchable: false
+        }
+      ]
+    }));
   }
 
 
