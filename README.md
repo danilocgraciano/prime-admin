@@ -1,6 +1,6 @@
 # PrimeAdmin
 
-Este é a codificação do [Bootstrap Dashboard ][dashboard] para um template angular, que pode ser adaptado para qualquer projeto.
+Este é a codificação de um template administrativo, inspirado no [Bootstrap Dashboard ][dashboard] utilizando angular, que pode ser adaptado para qualquer projeto.
 
 O objetivo deste template é que a cada novo projeto não seja necesário configurar todos os componentes novamente, como tabelas, rotas, menu, sidebar, login, etc...
 
