@@ -17,7 +17,6 @@ export class DataTableSetup {
         Object.assign(this, config);
         if (this.buttons != null) {
             this.dom = 'B' + this.dom;
-            console.log(this.dom);
         }
     }
 
