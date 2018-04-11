@@ -59,7 +59,7 @@ export class RestTableComponent extends AbstractTableComponent implements OnInit
     this.init("myTable", new DataTableSetup({
       processing: true,
       serverSide: true,
-      "ajax": "/api/uf",
+      ajax: "/api/uf",
       buttons: this.buttons,
       columns: this.columns,
       columnDefs: [
