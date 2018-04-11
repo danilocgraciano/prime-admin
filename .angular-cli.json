@@ -31,13 +31,14 @@
         "../node_modules/datatables.net/js/jquery.dataTables.js",
         "../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js",
         "../node_modules/datatables.net-buttons/js/dataTables.buttons.js",
-        "../node_modules/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js",
+        "assets/js/buttons.bootstrap4.js",
         "../node_modules/jszip/dist/jszip.min.js",
         "../node_modules/pdfmake/build/pdfmake.min.js",
         "../node_modules/pdfmake/build/vfs_fonts.js",
         "../node_modules/datatables.net-buttons/js/buttons.html5.min.js",
         "../node_modules/datatables.net-buttons/js/buttons.print.min.js",
-        "../node_modules/datatables.net-buttons/js/buttons.colVis.min.js"
+        "../node_modules/datatables.net-buttons/js/buttons.colVis.min.js",
+        "assets/js/JQueryInterceptor.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

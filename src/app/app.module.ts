@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { AuthModule } from "./auth/auth.module";
 import { AuthService } from "./auth/auth.service";
 import { SharedModule } from "./shared/shared.module";
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 
 @NgModule({
@@ -14,11 +17,16 @@ import { SharedModule } from "./shared/shared.module";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AuthModule,
     SharedModule,
     routing
   ],
-  providers: [AuthService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

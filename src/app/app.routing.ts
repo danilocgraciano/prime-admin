@@ -4,12 +4,14 @@ import { LoginComponent } from "./auth/login/login.component";
 import { HomeComponent } from "./shared/home/home.component";
 import { TableComponent } from "./shared/table/table.component";
 import { RestTableComponent } from "./shared/rest-table/rest-table.component";
+import { AuthGuardService } from './auth.guard.service ';
 
 export const APP_ROUTES: Routes = [
     {
         path: '',
         component: HomeComponent,
         data: { title: 'Home' },
+        canActivate: [AuthGuardService],
         children: [
             { path: 'simpleTable', component: TableComponent, data: { title: 'Simple Table' }, },
             { path: 'restTable', component: RestTableComponent, data: { title: 'Rest Table' }, }
