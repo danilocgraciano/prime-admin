@@ -17,10 +17,22 @@ export class RestTableComponent extends AbstractTableComponent implements OnInit
   }
 
   columns: Array<any> = [
-    { "data": "id" },
-    { "data": "descricao" },
-    { "data": "sigla" },
-    { "data": "codigoIbge" }
+    {
+      "data": "id",
+      "name": "uf_id"
+    },
+    {
+      "data": "descricao",
+      "name": "uf_descricao"
+    },
+    {
+      "data": "sigla",
+      "name": "uf_sigla"
+    },
+    {
+      "data": "codigoIbge",
+      "name": "uf_codigoibge"
+    }
   ];
 
   buttons: Array<any> = [
