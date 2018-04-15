@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { AuthService } from "../auth.service";
-import { InfoDialogComponent } from '../../shared/dialog/info-dialog/info-dialog.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+import { AuthService } from "../auth.service";
+import { InfoDialogComponent } from '../../dialog/info-dialog/info-dialog.component';
 
 @Component({
   selector: 'app-login',

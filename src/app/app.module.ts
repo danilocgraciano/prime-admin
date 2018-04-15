@@ -5,9 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { AuthService } from "./auth/auth.service";
 import { SharedModule } from "./shared/shared.module";
-import { AuthInterceptor } from './auth/auth.interceptor';
+import { AuthInterceptor } from './shared/auth/auth.interceptor';
 
 
 @NgModule({
