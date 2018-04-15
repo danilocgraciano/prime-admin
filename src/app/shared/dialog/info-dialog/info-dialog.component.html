@@ -1,4 +1,4 @@
-<div class="modal-header">
+<div class="modal-header" (onHidden)="afterClosed($event)">
   <h4 class="modal-title pull-left">{{title}}</h4>
   <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
@@ -8,5 +8,5 @@
   {{message}}
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">OK</button>
+  <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()" autofocus>OK</button>
 </div>

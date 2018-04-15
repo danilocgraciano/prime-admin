@@ -3,9 +3,10 @@ import { ModuleWithProviders } from '@angular/core';
 
 import { HomeComponent } from "./shared/home/home.component";
 import { TableComponent } from "./shared/table/table.component";
-import { RestTableComponent } from "./shared/rest-table/rest-table.component";
 import { AuthGuardService } from './auth.guard.service ';
 import { LoginComponent } from './shared/auth/login/login.component';
+import { UsuarioComponent } from './shared/usuario/usuario.component';
+import { UsuarioFormComponent } from './shared/usuario/usuario-form/usuario-form.component';
 
 export const APP_ROUTES: Routes = [
     {
@@ -14,8 +15,12 @@ export const APP_ROUTES: Routes = [
         data: { title: 'Home' },
         canActivate: [AuthGuardService],
         children: [
-            { path: 'simpleTable', component: TableComponent, data: { title: 'Simple Table' }, },
-            { path: 'restTable', component: RestTableComponent, data: { title: 'Rest Table' }, }
+            //USUÁRIOS
+            { path: 'usuario', component: UsuarioComponent, data: { title: 'Usuários' }, },
+            { path: 'usuario/new', component: UsuarioFormComponent, data: { title: 'Novo Usuário' }, },
+            { path: 'usuario/:id', component: UsuarioFormComponent, data: { title: 'Editar Usuário' }, }
+            //OUTROS
+            // { path: 'simpleTable', component: TableComponent, data: { title: 'Simple Table' }, }
         ]
     },
     { path: 'login', component: LoginComponent },

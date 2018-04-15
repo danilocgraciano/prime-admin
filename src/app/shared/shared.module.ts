@@ -8,13 +8,15 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
 import { TableComponent } from './table/table.component';
-import { RestTableComponent } from './rest-table/rest-table.component';
 import { routing } from "../app.routing";
 import { InfoDialogComponent } from './dialog/info-dialog/info-dialog.component';
 import { AuthGuardService } from '../auth.guard.service ';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { AuthService } from './auth/auth.service';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.component';
+import { UsuarioService } from './usuario/usuario.service';
 
 @NgModule({
   imports: [
@@ -30,13 +32,14 @@ import { AuthService } from './auth/auth.service';
     SidebarComponent,
     SidebarItemComponent,
     TableComponent,
-    RestTableComponent,
     InfoDialogComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    UsuarioComponent,
+    UsuarioFormComponent
   ],
   exports: [HomeComponent, InfoDialogComponent],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, UsuarioService],
   entryComponents: [InfoDialogComponent]
 })
 export class SharedModule { }

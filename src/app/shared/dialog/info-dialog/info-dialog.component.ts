@@ -15,5 +15,9 @@ export class InfoDialogComponent {
 
   constructor(private bsModalRef: BsModalRef) { }
 
+  afterClosed(event) {
+
+  }
+
 
 }

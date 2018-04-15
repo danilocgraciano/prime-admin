@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from "@angular/router";
 import 'rxjs/add/operator/do';
 
-import { Usuario } from "./Usuario";
 import * as moment from "moment";
+import { Usuario } from '../usuario/usuario';
 
 @Injectable()
 export class AuthService {
