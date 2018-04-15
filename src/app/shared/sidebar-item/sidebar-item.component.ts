@@ -21,7 +21,7 @@ export class SidebarItemComponent implements OnInit {
   }
 
   isActive(): boolean {
-    if (this.router.url.replace("/", "") === this.menuItem.url)
+    if (this.router.url.replace("/", "").startsWith(this.menuItem.url))
       return true;
     return false;
   }
