@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../auth.service";
+import { InfoDialogComponent } from '../../shared/dialog/info-dialog/info-dialog.component';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +12,9 @@ import { AuthService } from "../auth.service";
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  bsModalRef: BsModalRef;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
-
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -25,7 +27,21 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
 
     if (this.form.valid) {
-      this.authService.login(this.form.value);
+      this.authService.login(this.form.value)
+        .subscribe(resp => {
+          if (resp['success']) {
+            this.authService.redirectAferLogin();
+          } else {
+
+            const initialState = {
+              message: resp['msg'],
+              title: 'Atenção'
+            };
+            this.bsModalRef = this.modalService.show(InfoDialogComponent, {
+              initialState
+            });
+          }
+        });
     }
 
   }
