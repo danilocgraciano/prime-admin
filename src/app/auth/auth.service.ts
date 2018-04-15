@@ -19,15 +19,16 @@ export class AuthService {
 
     this.route.queryParams.subscribe(params => this.redirectUrl = params['return'] || '');
 
-    this.http.post('/api/login', JSON.stringify(usuario),
+    return this.http.post('/api/login', JSON.stringify(usuario),
       { headers: { 'Content-Type': 'application/json' } })
-      .subscribe(res => {
+      .do(res => {
         this.setSession(res);
-        this.router.navigate([this.redirectUrl]);
-      }, err => {
-        console.log(err);
-      }
-      );
+      });
+
+  }
+
+  redirectAferLogin() {
+    this.router.navigate([this.redirectUrl]);
   }
 
   logout(): void {
@@ -38,8 +39,6 @@ export class AuthService {
   private setSession(data) {
     if (data.success) {
       localStorage.setItem(this.keyToken, data.token);
-    } else {
-      console.log(data);
     }
   }
 
