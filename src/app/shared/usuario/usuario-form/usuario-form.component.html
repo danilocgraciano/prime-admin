@@ -6,18 +6,25 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
   <div class="form-group">
-    <input type="hidden" class="form-control" id="id" formControlName="id" [(ngModel)]="usuario.id">
+    <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="usuario.id" hidden>
   </div>
 
   <div class="form-group">
     <label for="nome">Nome</label>
     <input type="text" class="form-control" id="nome" formControlName="nome" [(ngModel)]="usuario.nome" autofocus>
+    <div invalidmessage="nome">
+      <p *invalidType="'required'">Nome é um campo obrigatório</p>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" formControlName="email" [(ngModel)]="usuario.email">
-  </div>
+  <!-- <div primeFormGoup="email">
+    <label for="email">E-mail</label>
+    <input type="email" primeFormControl id="email" formControlName="email" [(ngModel)]="usuario.email">
+    <div invalidmessage="email">
+      <p *invalidType="'required'">E-mail é um campo obrigatório</p>
+      <p *invalidType="'email'">E-mail inválido</p>
+    </div>
+  </div> -->
 
   <div class="form-group">
     <label for="senha">Senha</label>

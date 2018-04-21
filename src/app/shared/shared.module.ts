@@ -17,6 +17,8 @@ import { AuthService } from './auth/auth.service';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.component';
 import { UsuarioService } from './usuario/usuario.service';
+import { InvalidTypeDirective } from './form-validation/InvalidTypeDirective';
+import { InvalidMessageDirective } from './form-validation/InvalidmessageDirective';
 
 @NgModule({
   imports: [
@@ -36,7 +38,9 @@ import { UsuarioService } from './usuario/usuario.service';
     LoginComponent,
     LogoutComponent,
     UsuarioComponent,
-    UsuarioFormComponent
+    UsuarioFormComponent,
+    InvalidMessageDirective,
+    InvalidTypeDirective
   ],
   exports: [HomeComponent, InfoDialogComponent],
   providers: [AuthService, AuthGuardService, UsuarioService],
