@@ -19,6 +19,8 @@ import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.compon
 import { UsuarioService } from './usuario/usuario.service';
 import { InvalidTypeDirective } from './form-validation/InvalidTypeDirective';
 import { InvalidMessageDirective } from './form-validation/InvalidmessageDirective';
+import { MyFormGroupDirective } from './form-validation/MyFormGroupDirective';
+import { MyFormControlDirective } from './form-validation/MyFormControlDirective';
 
 @NgModule({
   imports: [
@@ -40,7 +42,9 @@ import { InvalidMessageDirective } from './form-validation/InvalidmessageDirecti
     UsuarioComponent,
     UsuarioFormComponent,
     InvalidMessageDirective,
-    InvalidTypeDirective
+    InvalidTypeDirective,
+    MyFormGroupDirective,
+    MyFormControlDirective
   ],
   exports: [HomeComponent, InfoDialogComponent],
   providers: [AuthService, AuthGuardService, UsuarioService],
