@@ -148,6 +148,7 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
       processing: true,
       serverSide: true,
       ajax: {
+        // https://medium.com/code-kings/datatables-js-how-to-update-your-data-object-for-ajax-json-data-retrieval-c1ac832d7aa5
         type: "GET",
         url: "/api/usuario",
         data: function (d) {
