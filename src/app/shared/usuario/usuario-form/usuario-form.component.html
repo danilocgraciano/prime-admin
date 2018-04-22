@@ -10,7 +10,7 @@
   </div>
 
   <div myFormGroup="nome" [required]="true">
-    <label for="nome">Nome</label>
+    <label class="control-label" for="nome">Nome</label>
     <input type="text" myFormControl id="nome" formControlName="nome" [(ngModel)]="usuario.nome" autofocus>
     <div invalidMessage>
       <p *invalidType="'required'">Nome é um campo obrigatório</p>
@@ -18,7 +18,7 @@
   </div>
 
   <div myFormGroup="email" [required]="true">
-    <label for="email">E-mail</label>
+    <label class="control-label" for="email">E-mail</label>
     <input type="email" myFormControl id="email" formControlName="email" [(ngModel)]="usuario.email">
     <div invalidMessage>
       <p *invalidType="'required'">E-mail é um campo obrigatório</p>
@@ -27,7 +27,7 @@
   </div>
 
   <div myFormGroup="senha" [required]="senhaObrigatoria">
-    <label for="senha">Senha</label>
+    <label class="control-label" for="senha">Senha</label>
     <input type="password" myFormControl id="senha" formControlName="senha" [(ngModel)]="usuario.senha">
   </div>
 
