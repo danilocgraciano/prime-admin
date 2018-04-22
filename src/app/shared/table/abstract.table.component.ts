@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 declare var $;
 
 export class AbstractTableComponent {
 
     static this: any;
     myTable: any;
+    onDblclick = new EventEmitter();
 
     constructor() {
         AbstractTableComponent.this = this;
@@ -29,6 +31,10 @@ export class AbstractTableComponent {
                     table.$('tr.table-primary').removeClass('table-primary');
                     $(this).addClass('table-primary');
                 }
+            });
+            table.on('dblclick', 'tr', function () {
+                var data = table.row( this ).data();
+                AbstractTableComponent.this.onDblclick.emit(data);
             });
 
         });

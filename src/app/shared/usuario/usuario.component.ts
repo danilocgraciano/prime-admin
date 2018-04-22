@@ -25,6 +25,10 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
     super();
     this.titleService.setTitle(route.snapshot.data['title']);
     UsuarioComponent.this = this;
+
+    UsuarioComponent.this.onDblclick.subscribe((data) => {
+      UsuarioComponent.this.editarAction(data['id']);
+    });
   }
 
   columns: Array<any> = [
@@ -42,6 +46,10 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
     }
   ];
 
+  editarAction(id) {
+    UsuarioComponent.this.router.navigate(['/usuario/' + id]);
+  }
+
   buttons: Array<any> = [
     {
       text: 'Novo',
@@ -51,11 +59,9 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
     }, {
       text: 'Editar',
       action: function (e, dt, node, config) {
-
         let selectedRow = UsuarioComponent.this.getSelection();
         if (selectedRow) {
-          var id = selectedRow['id']
-          UsuarioComponent.this.router.navigate(['/usuario/' + id]);
+          UsuarioComponent.this.editarAction(selectedRow['id']);
         } else {
           const initialState = {
             message: 'Selecione o registro que deseja alterar',
