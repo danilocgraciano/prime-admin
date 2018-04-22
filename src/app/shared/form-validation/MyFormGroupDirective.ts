@@ -27,7 +27,6 @@ export class MyFormGroupDirective implements OnInit, OnDestroy {
         this.render.addClass(this._el.nativeElement, 'form-group');
         if (this.required){
             this.render.addClass(this._el.nativeElement, 'required');
-
         }
 
         this.control = this.form.get(this.myFormGroup);
