@@ -21,6 +21,7 @@ import { InvalidTypeDirective } from './form-validation/InvalidTypeDirective';
 import { InvalidMessageDirective } from './form-validation/InvalidmessageDirective';
 import { MyFormGroupDirective } from './form-validation/MyFormGroupDirective';
 import { MyFormControlDirective } from './form-validation/MyFormControlDirective';
+import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   imports: [
@@ -44,10 +45,11 @@ import { MyFormControlDirective } from './form-validation/MyFormControlDirective
     InvalidMessageDirective,
     InvalidTypeDirective,
     MyFormGroupDirective,
-    MyFormControlDirective
+    MyFormControlDirective,
+    ConfirmDialogComponent
   ],
   exports: [HomeComponent, InfoDialogComponent],
   providers: [AuthService, AuthGuardService, UsuarioService],
-  entryComponents: [InfoDialogComponent]
+  entryComponents: [InfoDialogComponent, ConfirmDialogComponent]
 })
 export class SharedModule { }

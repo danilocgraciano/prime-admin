@@ -5,8 +5,9 @@ import { Title } from '@angular/platform-browser';
 
 import { DataTableSetup } from '../table/DataTableSetup';
 import { InfoDialogComponent } from '../dialog/info-dialog/info-dialog.component';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { UsuarioService } from './usuario.service';
+import { ConfirmDialogComponent } from '../dialog/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-usuario',
@@ -17,6 +18,7 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
 
   static this: any;
   title: string;
+  private bsModalRef: BsModalRef;
 
   constructor(private router: Router, private route: ActivatedRoute, private titleService: Title,
     private modalService: BsModalService, private usuarioService: UsuarioService) {
@@ -68,39 +70,55 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
       text: 'Excluir',
       action: function (e, dt, node, config) {
 
-        let selectedRow = UsuarioComponent.this.getSelection();
+        const initialState = {
+          title: 'Atenção',
+          message: 'Deseja realmente EXCLUIR?',
+        };
 
-        if (selectedRow) {
-          var id = selectedRow['id']
+        this.bsModalRef = UsuarioComponent.this.modalService.show(ConfirmDialogComponent, {
+          initialState
+        });
 
-          UsuarioComponent.this.usuarioService.deleteById(id).subscribe(resp => {
+        this.bsModalRef.content.onClose.subscribe(result => {
+          if (result) {
 
-            const initialState = {
-              message: resp['msg'],
-              title: (resp['success'] === true) ? 'Atenção' : 'Erro'
-            };
+            let selectedRow = UsuarioComponent.this.getSelection();
 
-            UsuarioComponent.this.modalService.onHidden.subscribe((reason: string) => {
+            if (selectedRow) {
+              var id = selectedRow['id']
 
-              if (resp['success'] === true) {
-                UsuarioComponent.this.removeSelection();
-              }
-            });
+              UsuarioComponent.this.usuarioService.deleteById(id).subscribe(resp => {
 
-            UsuarioComponent.this.modalService.show(InfoDialogComponent, {
-              initialState
-            });
+                const initialState = {
+                  message: resp['msg'],
+                  title: (resp['success'] === true) ? 'Atenção' : 'Erro'
+                };
 
-          });
-        } else {
-          const initialState = {
-            message: 'Selecione o registro que deseja excluir',
-            title: 'Atenção'
-          };
-          UsuarioComponent.this.modalService.show(InfoDialogComponent, {
-            initialState
-          });
-        }
+                UsuarioComponent.this.modalService.onHidden.subscribe((reason: string) => {
+
+                  if (resp['success'] === true) {
+                    UsuarioComponent.this.removeSelection();
+                  }
+                });
+
+                UsuarioComponent.this.modalService.show(InfoDialogComponent, {
+                  initialState
+                });
+
+              });
+            } else {
+              const initialState = {
+                message: 'Selecione o registro que deseja excluir',
+                title: 'Atenção'
+              };
+              UsuarioComponent.this.modalService.show(InfoDialogComponent, {
+                initialState
+              });
+            }
+
+
+          }
+        })
       }
     }, {
       extend: 'excelHtml5',
