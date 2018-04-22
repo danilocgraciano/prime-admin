@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractTableComponent } from '../table/abstract.table.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/observable/fromEvent';
 
 import { DataTableSetup } from '../table/DataTableSetup';
 import { InfoDialogComponent } from '../dialog/info-dialog/info-dialog.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { UsuarioService } from './usuario.service';
 import { ConfirmDialogComponent } from '../dialog/confirm-dialog/confirm-dialog.component';
+declare var $;
 
 @Component({
   selector: 'app-usuario',
@@ -29,6 +32,7 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
     UsuarioComponent.this.onDblclick.subscribe((data) => {
       UsuarioComponent.this.router.navigate(['/usuario/' + data['id']]);
     });
+
   }
 
   columns: Array<any> = [
@@ -139,10 +143,18 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
     }];
 
   ngOnInit() {
+
     this.init("myTable", new DataTableSetup({
       processing: true,
       serverSide: true,
-      ajax: "/api/usuario",
+      ajax: {
+        type: "GET",
+        url: "/api/usuario",
+        data: function (d) {
+          d.usuario_nome = $('#nome').val();
+          d.usuario_email = $('#email').val();
+        }
+      },
       buttons: this.buttons,
       columns: this.columns,
       columnDefs: [
@@ -153,5 +165,13 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
         }
       ]
     }));
+
+    Observable.fromEvent($('#nome'), 'keyup').debounceTime(500).subscribe((x) => {
+      this.myTable.draw();
+    });
+
+    Observable.fromEvent($('#email'), 'keyup').debounceTime(500).subscribe((x) => {
+      this.myTable.draw();
+    });
   }
 }
