@@ -18,6 +18,7 @@ export class UsuarioFormComponent implements OnInit {
   form: FormGroup;
   title: string = 'Cadastro de Usuário';
   mode: string;
+  senhaObrigatoria: boolean = true;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: UsuarioService, private modalService: BsModalService) { }
 
@@ -43,6 +44,8 @@ export class UsuarioFormComponent implements OnInit {
       if (!id)
         return;
 
+      this.senhaObrigatoria = false;
+
       this.service.readById(id).subscribe(resp => {
         if (!resp['success']) {
           const initialState = {
@@ -61,34 +64,47 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      var result;
-      var id = this.form.value.id;
-      if (id) {
-        result = this.service.update(this.form.value);
-      } else {
-        result = this.service.create(this.form.value);
-      }
-      result.subscribe((resp) => {
+    if (this.senhaObrigatoria && this.form.value.senha == null) {
 
+      const initialState = {
+        message: 'Senha é um campo obrigatório',
+        title: 'Erro'
+      };
 
-        const initialState = {
-          message: resp['msg'],
-          title: (resp['success'] === true) ? 'Atenção' : 'Erro'
-        };
-
-        this.modalService.onHidden.subscribe((reason: string) => {
-
-          if (resp['success'] === true) {
-            this.router.navigate(['/usuario/']);
-          }
-        });
-
-        this.modalService.show(InfoDialogComponent, {
-          initialState
-        });
-
+      this.modalService.show(InfoDialogComponent, {
+        initialState
       });
+
+    } else {
+      if (this.form.valid) {
+        var result;
+        var id = this.form.value.id;
+        if (id) {
+          result = this.service.update(this.form.value);
+        } else {
+          result = this.service.create(this.form.value);
+        }
+        result.subscribe((resp) => {
+
+
+          const initialState = {
+            message: resp['msg'],
+            title: (resp['success'] === true) ? 'Atenção' : 'Erro'
+          };
+
+          this.modalService.onHidden.subscribe((reason: string) => {
+
+            if (resp['success'] === true) {
+              this.router.navigate(['/usuario/']);
+            }
+          });
+
+          this.modalService.show(InfoDialogComponent, {
+            initialState
+          });
+
+        });
+      }
     }
 
   }

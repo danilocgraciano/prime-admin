@@ -14,6 +14,7 @@ import 'rxjs/add/observable/merge';
 })
 export class MyFormGroupDirective implements OnInit, OnDestroy {
     @Input() myFormGroup: string;
+    @Input() required: boolean = false;
     control: AbstractControl;
     hasView = false;
     controlValue$: Observable<any>;
@@ -24,6 +25,10 @@ export class MyFormGroupDirective implements OnInit, OnDestroy {
     ngOnInit() {
 
         this.render.addClass(this._el.nativeElement, 'form-group');
+        if (this.required){
+            this.render.addClass(this._el.nativeElement, 'required');
+
+        }
 
         this.control = this.form.get(this.myFormGroup);
         let formSubmit$ = (<FormGroupDirective>this._fg).ngSubmit.map(() => {

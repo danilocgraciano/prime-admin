@@ -9,7 +9,7 @@
     <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="usuario.id" hidden>
   </div>
 
-  <div myFormGroup="nome">
+  <div myFormGroup="nome" [required]="true">
     <label for="nome">Nome</label>
     <input type="text" myFormControl id="nome" formControlName="nome" [(ngModel)]="usuario.nome" autofocus>
     <div invalidMessage>
@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div myFormGroup="email">
+  <div myFormGroup="email" [required]="true">
     <label for="email">E-mail</label>
     <input type="email" myFormControl id="email" formControlName="email" [(ngModel)]="usuario.email">
     <div invalidMessage>
@@ -26,12 +26,17 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div myFormGroup="senha" [required]="senhaObrigatoria">
     <label for="senha">Senha</label>
-    <input type="password" class="form-control" id="senha" formControlName="senha" [(ngModel)]="usuario.senha">
+    <input type="password" myFormControl id="senha" formControlName="senha" [(ngModel)]="usuario.senha">
   </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
-  <a class="btn btn-secondary" routerLink="/usuario/">Sair</a>
+  <div class="row">
+    <div class="col-12 text-right">
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
+      <a class="btn btn-secondary" routerLink="/usuario/">Sair</a>
+    </div>
+  </div>
+
 
 </form>

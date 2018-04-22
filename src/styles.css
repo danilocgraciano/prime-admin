@@ -3,3 +3,9 @@ div.dataTables_wrapper div.dataTables_info {
     padding-top: 0em;
     white-space: nowrap;
 }
+
+.required:before{
+    content:"*";
+    font-weight:bold;
+    color:red;
+}
