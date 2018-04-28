@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModalModule } from 'ngx-bootstrap/modal'
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { HomeComponent } from "./home/home.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
 import { TableComponent } from './table/table.component';
-import { routing } from "../app.routing";
 import { InfoDialogComponent } from './dialog/info-dialog/info-dialog.component';
 import { AuthGuardService } from '../auth.guard.service ';
 import { LoginComponent } from './auth/login/login.component';
@@ -24,6 +23,7 @@ import { MyFormControlDirective } from './form-validation/MyFormControlDirective
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 import { PivotTableComponent } from './pivot-table/pivot-table.component';
 import { FlexmonsterPivotModule } from 'ng-flexmonster';
+import { SharedRoutingModule } from './shared.routing.module';
 
 @NgModule({
   imports: [
@@ -31,8 +31,8 @@ import { FlexmonsterPivotModule } from 'ng-flexmonster';
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    FlexmonsterPivotModule,
-    routing
+    SharedRoutingModule,
+    FlexmonsterPivotModule
   ],
   declarations: [
     HomeComponent,
@@ -52,7 +52,7 @@ import { FlexmonsterPivotModule } from 'ng-flexmonster';
     ConfirmDialogComponent,
     PivotTableComponent
   ],
-  exports: [HomeComponent, InfoDialogComponent],
+  exports: [HomeComponent, InfoDialogComponent, InvalidMessageDirective, InvalidTypeDirective, MyFormGroupDirective, MyFormControlDirective],
   providers: [AuthService, AuthGuardService, UsuarioService],
   entryComponents: [InfoDialogComponent, ConfirmDialogComponent]
 })
