@@ -36,7 +36,7 @@ export class NegocianteComponent extends AbstractTableComponent implements OnIni
 
   columns: Array<any> = [
     {
-      "data": "ID",
+      "data": "id",
       "name": "negociante_id",
       "defaultContent": ""
     },
