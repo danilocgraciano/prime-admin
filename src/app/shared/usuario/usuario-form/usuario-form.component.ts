@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from '../usuario';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../auth/auth.service';
 import { UsuarioService } from '../usuario.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { InfoDialogComponent } from '../../dialog/info-dialog/info-dialog.component';
