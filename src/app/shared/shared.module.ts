@@ -22,6 +22,8 @@ import { InvalidMessageDirective } from './form-validation/InvalidmessageDirecti
 import { MyFormGroupDirective } from './form-validation/MyFormGroupDirective';
 import { MyFormControlDirective } from './form-validation/MyFormControlDirective';
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
+import { PivotTableComponent } from './pivot-table/pivot-table.component';
+import { FlexmonsterPivotModule } from 'ng-flexmonster';
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.c
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
+    FlexmonsterPivotModule,
     routing
   ],
   declarations: [
@@ -46,7 +49,8 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.c
     InvalidTypeDirective,
     MyFormGroupDirective,
     MyFormControlDirective,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    PivotTableComponent
   ],
   exports: [HomeComponent, InfoDialogComponent],
   providers: [AuthService, AuthGuardService, UsuarioService],
