@@ -1,0 +1,32 @@
+<h5>
+  {{title}}
+  <small class="text-muted">{{mode}}</small>
+</h5>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="negociante.id" hidden>
+  </div>
+
+  <div myFormGroup="codigo">
+    <label class="control-label" for="codigo">Código</label>
+    <input type="text" myFormControl id="codigo" formControlName="codigo" [(ngModel)]="negociante.codigo">
+  </div>
+
+  <div myFormGroup="nome" [required]="true">
+    <label class="control-label" for="nome">Nome</label>
+    <input type="text" myFormControl id="nome" formControlName="nome" [(ngModel)]="negociante.nome" autofocus>
+    <div invalidMessage>
+      <p *invalidType="'required'">Nome é um campo obrigatório</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-right">
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
+      <a class="btn btn-secondary" routerLink="/negociante/">Sair</a>
+    </div>
+  </div>
+
+</form>

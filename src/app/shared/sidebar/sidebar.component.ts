@@ -9,6 +9,7 @@ export class SidebarComponent implements OnInit {
 
   menu: Array<any> = [
     { title: 'Usuários', icon: '', selected: false, url: 'usuario' },
+    { title: 'Negociantes', icon: '', selected: false, url: 'negociante' },
     { title: 'Simple Table', icon: '', selected: false, url: 'simpleTable' },
     { title: 'Pivot Table', icon: '', selected: false, url: 'pivotTable' }
   ]
