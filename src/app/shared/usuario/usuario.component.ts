@@ -42,11 +42,13 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
     },
     {
       "data": "nome",
-      "name": "usuario_nome"
+      "name": "usuario_nome",
+      "defaultContent": ""
     },
     {
       "data": "email",
-      "name": "usuario_email"
+      "name": "usuario_email",
+      "defaultContent": ""
     }
   ];
 
