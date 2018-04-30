@@ -1,8 +1,7 @@
-<nav class="navbar navbar-dark sticky-top navbar-light flex-md-nowrap p-0" style="background-color: #3892d4;">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">{{title}}</a>
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <app-logout></app-logout>
-    </li>
-  </ul>
+<nav class="navbar sticky-top">
+  <a id="sidebarCollapse" href="#" (click)="$event.preventDefault();" class="btn btn-outline-light">
+    <i class="oi oi-menu"></i>
+  </a>
+  <span class="navbar-brand">Prime Admin</span>
+  <app-logout></app-logout>
 </nav>

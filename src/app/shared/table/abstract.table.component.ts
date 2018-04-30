@@ -37,6 +37,8 @@ export class AbstractTableComponent {
                 AbstractTableComponent.this.onDblclick.emit(data);
             });
 
+            $('#' + selector).css({"width":"100%"});
+
         });
     }
 

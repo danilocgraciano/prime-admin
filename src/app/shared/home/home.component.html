@@ -1,6 +1,6 @@
 <app-navbar title="Prime Admin"></app-navbar>
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row">
 
     <app-sidebar></app-sidebar>
@@ -9,6 +9,21 @@
 
       <router-outlet></router-outlet>
 
+    </main>
+  </div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Page Content -->
+    <main role="main" class="col content">
+
+      <router-outlet></router-outlet>
+      
     </main>
   </div>
 </div>
