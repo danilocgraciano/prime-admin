@@ -16,11 +16,10 @@ li a:hover {
     background: #0866c6;
 }
 
-/* li.active > a, a[aria-expanded="true"] {
+li.active > a, a[aria-expanded="true"] {
     color: #fff;
     background: #0866c6;
-} */
-
+}
 
 a[data-toggle="collapse"] {
     position: relative;
@@ -34,6 +33,7 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     font-family: 'Icons';
     font-size: 0.6em;
 }
+
 a[aria-expanded="true"]::before {
     content: '\e037';
 }
@@ -43,7 +43,7 @@ a {
     padding-left: 30px !important;
 }
 
-a.active{
+a.active {
     color: #fff;
     background: #0866c6;
 }

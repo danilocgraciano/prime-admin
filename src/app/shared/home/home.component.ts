@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-declare var $;
 
 @Component({
   selector: 'app-home',
@@ -15,11 +14,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    $(document).ready(function () {
-      $('#sidebarCollapse').on('click', function () {
-        $('.sidebar').toggleClass('active');
-      });
-    });
   }
 
 }

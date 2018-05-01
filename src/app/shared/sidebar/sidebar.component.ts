@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $;
 
 @Component({
   selector: 'app-sidebar',
@@ -17,6 +18,18 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    $(document).on("mousemove", function (event) {
+      if (!$(".sidebar.show")[0]) {
+        if (event.pageX < 30 && event.pageY > 40) {
+          $('.sidebar').css({ "margin-left": "0px" });
+        } else {
+          if (event.pageX > 225) {
+            $('.sidebar').css({ "margin-left": "-225px" });
+          }
+        }
+      }
+    });
   }
 
 }

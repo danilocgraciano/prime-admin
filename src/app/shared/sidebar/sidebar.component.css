@@ -3,13 +3,14 @@
   min-height: 120vh;
   min-width: 225px;
   max-width: 225px;
+  margin-left: -225px;
   background: #1f1f1f;
   color: #fff;
   transition: all 0.3s;
 }
 
-.sidebar.active {
-  margin-left: -225px;
+.sidebar.show {
+  margin-left: 0px;
 }
 
 /* ---------------------------------------------------
@@ -22,8 +23,5 @@ MEDIAQUERIES
   }
   .sidebar.active {
     margin-left: 0;
-  }
-  .sidebarCollapse span {
-    display: none;
   }
 }
