@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from "@angular/router";
+declare var $;
 
 @Component({
   selector: 'app-sidebar-item',
@@ -13,6 +14,20 @@ export class SidebarItemComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+
+    $(document).ready(function () {
+      $('.nav-link').on('click', function () {
+
+        let width = $(window).width();
+        if (width < 768) { //@media (max-width: 768px)
+
+          let sidebar = $('.sidebar');
+          sidebar.removeClass('show');
+          sidebar.css({ "margin-left": "-225px" });
+
+        }
+      });
+    });
   }
 
   onClick(event) {
