@@ -1,0 +1,45 @@
+<h5>
+  {{title}}
+  <small class="text-muted">{{mode}}</small>
+</h5>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="pais.id" hidden>
+  </div>
+
+  <div myFormGroup="sigla" [required]="true">
+    <label class="control-label" for="sigla">Sigla</label>
+    <input type="text" myFormControl id="sigla" formControlName="sigla" [(ngModel)]="pais.sigla">
+    <div invalidMessage>
+      <p *invalidType="'required'">Sigla é um campo obrigatório</p>
+    </div>
+  </div>
+
+  <div myFormGroup="descricao" [required]="true">
+    <label class="control-label" for="descricao">Descrição</label>
+    <input type="text" myFormControl id="descricao" formControlName="descricao" [(ngModel)]="pais.descricao">
+    <div invalidMessage>
+      <p *invalidType="'required'">Descrição é um campo obrigatório</p>
+    </div>
+  </div>
+
+  <div myFormGroup="codigoBacen" [required]="true">
+    <label class="control-label" for="codigoBacen">Código BACEN</label>
+    <input type="text" myFormControl id="codigoBacen" formControlName="codigoBacen" [(ngModel)]="pais.codigoBacen">
+    <div invalidMessage>
+      <p *invalidType="'required'">Código IBGE é um campo obrigatório</p>
+      <p *invalidType="'maxlength'">Código IBGE deve possuir 4 dígitos</p>
+      <p *invalidType="'minlength'">Código IBGE deve possuir 4 dígitos</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-right">
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
+      <a class="btn btn-secondary" [routerLink]=url>Sair</a>
+    </div>
+  </div>
+
+</form>

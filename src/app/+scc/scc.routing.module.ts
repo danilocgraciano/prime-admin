@@ -3,11 +3,23 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { NegocianteComponent } from './negociante/negociante.component';
 import { NegocianteFormComponent } from './negociante/negociante-form/negociante-form.component';
+import { UfFormComponent } from './uf/uf-form/uf-form.component';
+import { UfComponent } from './uf/uf.component';
+import { PaisComponent } from './pais/pais.component';
+import { PaisFormComponent } from './pais/pais-form/pais-form.component';
 
 const APP_ROUTES = [
     { path: 'negociante', component: NegocianteComponent, data: { title: 'Negociantes' } },
     { path: 'negociante/new', component: NegocianteFormComponent, data: { title: 'Novo Negociante' } },
-    { path: 'negociante/:id', component: NegocianteFormComponent, data: { title: 'Editar Negociante' } }
+    { path: 'negociante/:id', component: NegocianteFormComponent, data: { title: 'Editar Negociante' } },
+
+    { path: 'uf', component: UfComponent, data: { title: 'Unidades Federativas' } },
+    { path: 'uf/new', component: UfFormComponent, data: { title: 'Nova UF' } },
+    { path: 'uf/:id', component: UfFormComponent, data: { title: 'Editar UF' } },
+
+    { path: 'pais', component: PaisComponent, data: { title: 'Países' } },
+    { path: 'pais/new', component: PaisFormComponent, data: { title: 'Novo País' } },
+    { path: 'pais/:id', component: PaisFormComponent, data: { title: 'Editar País' } }
 ];
 
 @NgModule({

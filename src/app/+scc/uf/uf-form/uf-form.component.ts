@@ -2,32 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Negociante } from '../negociante';
-import { NegocianteService } from '../negociante.service';
 import { InfoDialogComponent } from '../../../shared/dialog/info-dialog/info-dialog.component';
 
-@Component({
-  selector: 'app-negociante-form',
-  templateUrl: './negociante-form.component.html',
-  styleUrls: ['./negociante-form.component.css']
-})
-export class NegocianteFormComponent implements OnInit {
+import { UF } from '../uf';
+import { UfService } from '../uf.service';
 
-  url: string = '/negociante/';
-  negociante: Negociante = new Negociante();
+@Component({
+  selector: 'app-uf-form',
+  templateUrl: './uf-form.component.html',
+  styleUrls: ['./uf-form.component.css']
+})
+export class UfFormComponent implements OnInit {
+
+  url: string = '/uf/';
+  uf: UF = new UF();
+
   form: FormGroup;
-  title: string = 'Cadastro de Negociante';
+  title: string = 'Cadastro de UF';
   mode: string;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: NegocianteService, private modalService: BsModalService) { }
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: UfService, private modalService: BsModalService) { }
 
   ngOnInit() {
 
     this.form = this.formBuilder.group({
       id: ['', []],
-      codigo: ['', []],
-      nome: ['', [
+      sigla: ['', [Validators.required]],
+      descricao: ['', [
         Validators.required
+      ]],
+      codigoIbge: ['', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(2)
       ]]
     });
 
@@ -49,7 +56,7 @@ export class NegocianteFormComponent implements OnInit {
             initialState
           });
         } else {
-          this.negociante = resp['data'];
+          this.uf = resp['data'];
         }
       });
 

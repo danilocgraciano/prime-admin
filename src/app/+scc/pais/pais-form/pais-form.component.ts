@@ -2,32 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Negociante } from '../negociante';
-import { NegocianteService } from '../negociante.service';
 import { InfoDialogComponent } from '../../../shared/dialog/info-dialog/info-dialog.component';
 
-@Component({
-  selector: 'app-negociante-form',
-  templateUrl: './negociante-form.component.html',
-  styleUrls: ['./negociante-form.component.css']
-})
-export class NegocianteFormComponent implements OnInit {
+import { Pais } from '../pais';
+import { PaisService } from '../pais.service';
 
-  url: string = '/negociante/';
-  negociante: Negociante = new Negociante();
+@Component({
+  selector: 'app-pais-form',
+  templateUrl: './pais-form.component.html',
+  styleUrls: ['./pais-form.component.css']
+})
+export class PaisFormComponent implements OnInit {
+
+  url: string = '/pais/';
+  pais: Pais = new Pais();
+
   form: FormGroup;
-  title: string = 'Cadastro de Negociante';
+  title: string = 'Cadastro de País';
   mode: string;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: NegocianteService, private modalService: BsModalService) { }
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: PaisService, private modalService: BsModalService) { }
 
   ngOnInit() {
 
     this.form = this.formBuilder.group({
       id: ['', []],
-      codigo: ['', []],
-      nome: ['', [
+      sigla: ['', [Validators.required]],
+      descricao: ['', [
         Validators.required
+      ]],
+      codigoBacen: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(4)
       ]]
     });
 
@@ -49,7 +56,7 @@ export class NegocianteFormComponent implements OnInit {
             initialState
           });
         } else {
-          this.negociante = resp['data'];
+          this.pais = resp['data'];
         }
       });
 
