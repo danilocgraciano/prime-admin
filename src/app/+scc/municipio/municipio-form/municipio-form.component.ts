@@ -51,10 +51,10 @@ export class MunicipioFormComponent implements OnInit {
         Validators.maxLength(7)
       ]],
       uf: this.formBuilder.group({
-        id: ['', []]
+        id: ['', [Validators.required]]
       }),
       pais: this.formBuilder.group({
-        id: ['', []]
+        id: ['', [Validators.required]]
       })
     });
 
