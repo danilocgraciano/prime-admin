@@ -67,7 +67,6 @@ export class MunicipioComponent extends AbstractTableComponent implements OnInit
     {
       text: 'Novo',
       action: function (e, dt, node, config) {
-        console.log(this.url + 'new');
         MunicipioComponent.this.router.navigate([MunicipioComponent.this.url + 'new']);
       }
     }, {

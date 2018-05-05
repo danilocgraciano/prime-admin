@@ -48,7 +48,8 @@ export class MunicipioFormComponent implements OnInit {
       codigoMunicipal: ['', [
         Validators.required,
         Validators.minLength(7),
-        Validators.maxLength(7)
+        Validators.maxLength(7),
+        Validators.pattern('[0-9]+')
       ]],
       uf: this.formBuilder.group({
         id: ['', [Validators.required]]
