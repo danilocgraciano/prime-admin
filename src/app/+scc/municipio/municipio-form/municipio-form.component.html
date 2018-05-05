@@ -1,0 +1,51 @@
+<h5>
+  {{title}}
+  <small class="text-muted">{{mode}}</small>
+</h5>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="municipio.id" hidden>
+  </div>
+
+  <div myFormGroup="nome" [required]="true">
+    <label class="control-label" for="nome">Nome</label>
+    <input type="text" myFormControl id="nome" formControlName="nome" [(ngModel)]="municipio.nome">
+    <div invalidMessage>
+      <p *invalidType="'required'">Nome é um campo obrigatório</p>
+    </div>
+  </div>
+
+  <div myFormGroup="codigoMunicipal" [required]="true">
+    <label class="control-label" for="codigoMunicipal">Código Municipal</label>
+    <input type="text" myFormControl id="codigoMunicipal" formControlName="codigoMunicipal" [(ngModel)]="municipio.codigoMunicipal">
+    <div invalidMessage>
+      <p *invalidType="'required'">Código Municipal é um campo obrigatório</p>
+      <p *invalidType="'maxlength'">Código IBGE deve possuir 7 dígitos</p>
+      <p *invalidType="'minlength'">Código IBGE deve possuir 7 dígitos</p>
+    </div>
+  </div>
+
+  <div class="form-group required" formGroupName="uf">
+    <label class="control-label" for="uf">UF</label>
+    <select class="custom-select" formControlName="id" [(ngModel)]="municipio.uf.id">
+      <option *ngFor="let option of ufList" [value]="option.id">{{option.sigla}}</option>
+    </select>
+  </div>
+
+  <div class="form-group required" formGroupName="pais">
+    <label class="control-label" for="pais">País</label>
+    <select class="custom-select" formControlName="id" [(ngModel)]="municipio.pais.id">
+      <option *ngFor="let option of paisList" [value]="option.id">{{option.descricao}}</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-right">
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
+      <a class="btn btn-secondary" [routerLink]=url>Sair</a>
+    </div>
+  </div>
+
+</form>

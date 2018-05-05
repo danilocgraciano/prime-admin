@@ -7,6 +7,8 @@ import { UfFormComponent } from './uf/uf-form/uf-form.component';
 import { UfComponent } from './uf/uf.component';
 import { PaisComponent } from './pais/pais.component';
 import { PaisFormComponent } from './pais/pais-form/pais-form.component';
+import { MunicipioComponent } from './municipio/municipio.component';
+import { MunicipioFormComponent } from './municipio/municipio-form/municipio-form.component';
 
 const APP_ROUTES = [
     { path: 'negociante', component: NegocianteComponent, data: { title: 'Negociantes' } },
@@ -19,7 +21,11 @@ const APP_ROUTES = [
 
     { path: 'pais', component: PaisComponent, data: { title: 'Países' } },
     { path: 'pais/new', component: PaisFormComponent, data: { title: 'Novo País' } },
-    { path: 'pais/:id', component: PaisFormComponent, data: { title: 'Editar País' } }
+    { path: 'pais/:id', component: PaisFormComponent, data: { title: 'Editar País' } },
+
+    { path: 'municipio', component: MunicipioComponent, data: { title: 'Municípios' } },
+    { path: 'municipio/new', component: MunicipioFormComponent, data: { title: 'Novo Município' } },
+    { path: 'municipio/:id', component: MunicipioFormComponent, data: { title: 'Editar Município' } }
 ];
 
 @NgModule({

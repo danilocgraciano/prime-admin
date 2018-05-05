@@ -12,6 +12,10 @@ export class UfService {
     return this.url + "/" + id;
   }
 
+  search() {
+    return this.http.get(this.url + "/search");
+  }
+
   readById(id: number) {
     return this.http.get(this.getUrl(id));
   }
