@@ -12,8 +12,14 @@ export class UfService {
     return this.url + "/" + id;
   }
 
-  search() {
-    return this.http.get(this.url + "/search");
+  search(sigla = '', descricao = '', codigoIbge = '') {
+    return this.http.get(this.url + "/search", {
+      params: {
+        'sigla': sigla,
+        'descricao': descricao,
+        'codigoIbge': codigoIbge,
+      }
+    });
   }
 
   readById(id: number) {
