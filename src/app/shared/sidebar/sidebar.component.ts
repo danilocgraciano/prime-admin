@@ -11,6 +11,7 @@ export class SidebarComponent implements OnInit {
   menu: Array<any> = [
     { title: 'Usuários', icon: 'oi oi-people', selected: false, url: 'usuario' },
     { title: 'Negociantes', icon: 'oi oi-person', selected: false, url: 'negociante' },
+    { title: 'CEP', icon: 'oi oi-chevron-right', selected: false, url: 'cep' },
     { title: 'Município', icon: 'oi oi-chevron-right', selected: false, url: 'municipio' },
     { title: 'UF', icon: 'oi oi-chevron-right', selected: false, url: 'uf' },
     { title: 'País', icon: 'oi oi-chevron-right', selected: false, url: 'pais' },

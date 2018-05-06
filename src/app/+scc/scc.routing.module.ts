@@ -9,6 +9,8 @@ import { PaisComponent } from './pais/pais.component';
 import { PaisFormComponent } from './pais/pais-form/pais-form.component';
 import { MunicipioComponent } from './municipio/municipio.component';
 import { MunicipioFormComponent } from './municipio/municipio-form/municipio-form.component';
+import { CepComponent } from './cep/cep.component';
+import { CepFormComponent } from './cep/cep-form/cep-form.component';
 
 const APP_ROUTES = [
     { path: 'negociante', component: NegocianteComponent, data: { title: 'Negociantes' } },
@@ -25,7 +27,11 @@ const APP_ROUTES = [
 
     { path: 'municipio', component: MunicipioComponent, data: { title: 'Municípios' } },
     { path: 'municipio/new', component: MunicipioFormComponent, data: { title: 'Novo Município' } },
-    { path: 'municipio/:id', component: MunicipioFormComponent, data: { title: 'Editar Município' } }
+    { path: 'municipio/:id', component: MunicipioFormComponent, data: { title: 'Editar Município' } },
+
+    { path: 'cep', component: CepComponent, data: { title: 'CEP' } },
+    { path: 'cep/new', component: CepFormComponent, data: { title: 'Novo CEP' } },
+    { path: 'cep/:id', component: CepFormComponent, data: { title: 'Editar CEP' } }
 ];
 
 @NgModule({

@@ -1,0 +1,45 @@
+<h5>
+  {{title}}
+  <small class="text-muted">{{mode}}</small>
+</h5>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="cep.id" hidden>
+  </div>
+
+  <div myFormGroup="codigo" [required]="true">
+    <label class="control-label" for="codigo">Código</label>
+    <input type="text" myFormControl id="codigo" formControlName="codigo" [(ngModel)]="cep.codigo">
+    <div invalidMessage>
+      <p *invalidType="'required'">Código é um campo obrigatório</p>
+      <p *invalidType="'pattern'">O número informado deve ter o formato #####-###</p>
+    </div>
+  </div>
+
+  <div myFormGroup="logradouro">
+    <label class="control-label" for="logradouro">Logradouro</label>
+    <input type="text" myFormControl id="logradouro" formControlName="logradouro" [(ngModel)]="cep.logradouro">
+  </div>
+
+  <div myFormGroup="bairro">
+    <label class="control-label" for="bairro">Bairro</label>
+    <input type="text" myFormControl id="bairro" formControlName="bairro" [(ngModel)]="cep.bairro">
+  </div>
+
+  <div class="form-group required" formGroupName="municipio">
+    <label class="control-label" for="municipio">Município</label>
+    <select class="custom-select" formControlName="id" [(ngModel)]="cep.municipio.id">
+      <option *ngFor="let option of municipioList" [value]="option.id">{{option.nome}}</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-right">
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
+      <a class="btn btn-secondary" [routerLink]=url>Sair</a>
+    </div>
+  </div>
+
+</form>

@@ -2,20 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class MunicipioService {
+export class CepService {
 
-  url: string = '/api/municipio';
+  url: string = '/api/cep';
 
   constructor(private http: HttpClient) { }
-
-  search(nome = '', codigoMunicipal = '') {
-    return this.http.get(this.url + "/search", {
-      params: {
-        'nome': nome,
-        'codigoMunicipal': codigoMunicipal
-      }
-    });
-  }
 
   private getUrl(id) {
     return this.url + "/" + id;

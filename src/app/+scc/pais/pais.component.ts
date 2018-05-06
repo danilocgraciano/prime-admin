@@ -18,7 +18,9 @@ declare var $;
 })
 export class PaisComponent extends AbstractTableComponent implements OnInit {
 
+
   static this: any;
+  url: string = '/pais/';
   title: string;
   private bsModalRef: BsModalRef;
 
@@ -29,7 +31,7 @@ export class PaisComponent extends AbstractTableComponent implements OnInit {
     PaisComponent.this = this;
 
     PaisComponent.this.onDblclick.subscribe((data) => {
-      PaisComponent.this.router.navigate(['/pais/' + data['id']]);
+      PaisComponent.this.router.navigate([PaisComponent.this.url + data['id']]);
     });
 
   }
@@ -50,7 +52,7 @@ export class PaisComponent extends AbstractTableComponent implements OnInit {
       "name": "pais_sigla",
       "defaultContent": ""
     },
-    
+
     {
       "data": "codigoBacen",
       "name": "pais_codigobacen",
@@ -62,14 +64,14 @@ export class PaisComponent extends AbstractTableComponent implements OnInit {
     {
       text: 'Novo',
       action: function (e, dt, node, config) {
-        PaisComponent.this.router.navigate(['/pais/new']);
+        PaisComponent.this.router.navigate([PaisComponent.this.url + '/new']);
       }
     }, {
       text: 'Editar',
       action: function (e, dt, node, config) {
         let selectedRow = PaisComponent.this.getSelection();
         if (selectedRow) {
-          PaisComponent.this.router.navigate(['/pais/' + selectedRow['id']]);
+          PaisComponent.this.router.navigate([PaisComponent.this.url + + selectedRow['id']]);
         } else {
           const initialState = {
             message: 'Selecione o registro que deseja alterar',

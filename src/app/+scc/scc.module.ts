@@ -15,6 +15,9 @@ import { PaisFormComponent } from './pais/pais-form/pais-form.component';
 import { MunicipioComponent } from './municipio/municipio.component';
 import { MunicipioFormComponent } from './municipio/municipio-form/municipio-form.component';
 import { MunicipioService } from './municipio/municipio.service';
+import { CepComponent } from './cep/cep.component';
+import { CepFormComponent } from './cep/cep-form/cep-form.component';
+import { CepService } from './cep/cep.service';
 
 @NgModule({
   imports: [
@@ -32,8 +35,10 @@ import { MunicipioService } from './municipio/municipio.service';
     PaisComponent,
     PaisFormComponent,
     MunicipioComponent,
-    MunicipioFormComponent
+    MunicipioFormComponent,
+    CepComponent,
+    CepFormComponent
   ],
-  providers: [NegocianteService, UfService, PaisService, MunicipioService]
+  providers: [NegocianteService, UfService, PaisService, MunicipioService, CepService]
 })
 export class SccModule { }
