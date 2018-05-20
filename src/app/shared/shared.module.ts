@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { HomeComponent } from "./home/home.component";
 import { NavbarComponent } from "./navbar/navbar.component";
@@ -29,6 +30,7 @@ import { SharedRoutingModule } from './shared.routing.module';
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
+    NgSelectModule,
     SharedRoutingModule
   ],
   declarations: [
@@ -48,7 +50,7 @@ import { SharedRoutingModule } from './shared.routing.module';
     MyFormControlDirective,
     ConfirmDialogComponent
   ],
-  exports: [HomeComponent, InfoDialogComponent, InvalidMessageDirective, InvalidTypeDirective, MyFormGroupDirective, MyFormControlDirective],
+  exports: [HomeComponent, InfoDialogComponent, InvalidMessageDirective, InvalidTypeDirective, MyFormGroupDirective, MyFormControlDirective, NgSelectModule],
   providers: [AuthService, AuthGuardService, UsuarioService],
   entryComponents: [InfoDialogComponent, ConfirmDialogComponent]
 })
