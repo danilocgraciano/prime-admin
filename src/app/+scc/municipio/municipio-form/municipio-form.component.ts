@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { InfoDialogComponent } from '../../../shared/dialog/info-dialog/info-dialog.component';
@@ -25,22 +27,16 @@ export class MunicipioFormComponent implements OnInit {
   title: string = 'Cadastro de Município';
   mode: string;
 
-  ufList: Array<UF> = new Array<UF>();
-
-  paisList: Array<Pais> = new Array<Pais>();
+  uf$: Observable<any>
+  pais$: Observable<any>
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
     private municipioService: MunicipioService, private ufService: UfService, private paisService: PaisService, private modalService: BsModalService) { }
 
   ngOnInit() {
 
-    this.ufService.search().subscribe((data) => {
-      this.ufList = data['data'];
-    });
-
-    this.paisService.search().subscribe((data) => {
-      this.paisList = data['data'];
-    });
+    this.uf$ = this.ufService.search().map(obj => obj['data']);
+    this.pais$ = this.paisService.search().map(obj => obj['data']);
 
     this.form = this.formBuilder.group({
       id: ['', []],

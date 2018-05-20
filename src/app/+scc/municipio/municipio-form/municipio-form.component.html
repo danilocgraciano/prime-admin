@@ -29,12 +29,12 @@
 
   <div class="form-group required" formGroupName="uf">
     <label class="control-label" for="uf">UF</label>
-    <ng-select [items]="ufList" bindLabel="descricao" bindValue="id" formControlName="id" [(ngModel)]="municipio.uf.id"></ng-select>
+    <ng-select [items]="uf$ | async" bindLabel="descricao" bindValue="id" formControlName="id" [(ngModel)]="municipio.uf.id"></ng-select>
   </div>
 
   <div class="form-group required" formGroupName="pais">
     <label class="control-label" for="pais">País</label>
-    <ng-select [items]="paisList" bindLabel="descricao" bindValue="id" formControlName="id" [(ngModel)]="municipio.pais.id"></ng-select>
+    <ng-select [items]="pais$ | async" bindLabel="descricao" bindValue="id" formControlName="id" [(ngModel)]="municipio.pais.id"></ng-select>
   </div>
 
   <div class="row">

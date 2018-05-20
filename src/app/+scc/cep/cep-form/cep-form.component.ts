@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { InfoDialogComponent } from '../../../shared/dialog/info-dialog/info-dialog.component';
-
 import { Cep } from '../cep';
 import { CepService } from '../cep.service';
 import { Municipio } from '../../municipio/municipio';
@@ -24,15 +25,13 @@ export class CepFormComponent implements OnInit {
   title: string = 'Cadastro de CEP';
   mode: string;
 
-  municipioList: Array<Municipio> = new Array<Municipio>();
+  municipio$: Observable<any>
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: CepService, private municipioService: MunicipioService, private modalService: BsModalService) { }
 
   ngOnInit() {
 
-    this.municipioService.search().subscribe((data) => {
-      this.municipioList = data['data'];
-    });
+    this.municipio$ = this.municipioService.search().map(obj => obj['data']);
 
     this.form = this.formBuilder.group({
       id: ['', []],

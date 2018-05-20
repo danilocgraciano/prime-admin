@@ -30,9 +30,7 @@
 
   <div class="form-group required" formGroupName="municipio">
     <label class="control-label" for="municipio">Município</label>
-    <select class="custom-select" formControlName="id" [(ngModel)]="cep.municipio.id">
-      <option *ngFor="let option of municipioList" [value]="option.id">{{option.nome}}</option>
-    </select>
+    <ng-select [items]="municipio$ | async" bindLabel="nome" bindValue="id" formControlName="id" [(ngModel)]="cep.municipio.id"></ng-select>
   </div>
 
   <div class="row">
