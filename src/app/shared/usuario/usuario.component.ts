@@ -3,7 +3,7 @@ import { AbstractTableComponent } from '../table/abstract.table.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/observable/fromEvent';
+
 
 import { DataTableSetup } from '../table/DataTableSetup';
 import { InfoDialogComponent } from '../dialog/info-dialog/info-dialog.component';

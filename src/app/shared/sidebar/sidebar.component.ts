@@ -15,8 +15,7 @@ export class SidebarComponent implements OnInit {
     { title: 'Município', icon: 'oi oi-chevron-right', selected: false, url: 'municipio' },
     { title: 'UF', icon: 'oi oi-chevron-right', selected: false, url: 'uf' },
     { title: 'País', icon: 'oi oi-chevron-right', selected: false, url: 'pais' },
-    { title: 'Simple Table', icon: 'oi oi-chevron-right', selected: false, url: 'simpleTable' },
-    { title: 'Pivot Table', icon: 'oi oi-chevron-right', selected: false, url: 'pivotTable' }
+    { title: 'Simple Table', icon: 'oi oi-chevron-right', selected: false, url: 'simpleTable' }
   ]
 
   constructor() { }

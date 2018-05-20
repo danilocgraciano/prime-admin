@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from "@angular/router";
-import 'rxjs/add/operator/do';
+
 
 import * as moment from "moment";
 import { Usuario } from '../usuario/usuario';

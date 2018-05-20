@@ -3,7 +3,7 @@ import { AbstractTableComponent } from '../../shared/table/abstract.table.compon
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/observable/fromEvent';
+
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NegocianteService } from './negociante.service';
 import { InfoDialogComponent } from '../../shared/dialog/info-dialog/info-dialog.component';
@@ -173,13 +173,13 @@ export class NegocianteComponent extends AbstractTableComponent implements OnIni
         ]
       }));
   
-      // Observable.fromEvent($('#nome'), 'keyup').debounceTime(500).subscribe((x) => {
-      //   this.myTable.draw();
-      // });
+      Observable.fromEvent($('#nome'), 'keyup').debounceTime(500).subscribe((x) => {
+        this.myTable.draw();
+      });
   
-      // Observable.fromEvent($('#email'), 'keyup').debounceTime(500).subscribe((x) => {
-      //   this.myTable.draw();
-      // });
+      Observable.fromEvent($('#email'), 'keyup').debounceTime(500).subscribe((x) => {
+        this.myTable.draw();
+      });
     }
 
 }

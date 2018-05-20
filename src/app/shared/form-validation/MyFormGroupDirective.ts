@@ -3,11 +3,10 @@
  */
 import { Directive, OnInit, OnDestroy, Input, ElementRef, Renderer2 } from "@angular/core";
 import { AbstractControl, ControlContainer, FormGroupDirective } from "@angular/forms";
-import { Subscription } from "rxjs/Subscription";
-import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/merge';
+import { Subscription ,  Observable } from "rxjs";
+
+
+
 
 @Directive({
     selector: '[myFormGroup]'

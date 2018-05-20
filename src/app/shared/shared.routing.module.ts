@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.component';
 import { TableComponent } from './table/table.component';
-import { PivotTableComponent } from './pivot-table/pivot-table.component';
 
 const APP_ROUTES = [
 
@@ -14,8 +13,7 @@ const APP_ROUTES = [
     { path: 'usuario/:id', component: UsuarioFormComponent, data: { title: 'Editar Usuário' } },
 
     //OUTROS
-    { path: 'simpleTable', component: TableComponent, data: { title: 'Simple Table' } },
-    { path: 'pivotTable', component: PivotTableComponent, data: { title: 'Pivot Table' } }
+    { path: 'simpleTable', component: TableComponent, data: { title: 'Simple Table' } }
 ];
 
 @NgModule({

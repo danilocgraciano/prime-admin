@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { AuthInterceptor } from './shared/auth/auth.interceptor';
-import { SccModule } from './+scc/scc.module';
 
 
 @NgModule({
@@ -17,8 +16,7 @@ import { SccModule } from './+scc/scc.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    SharedModule,
-    SccModule
+    SharedModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -7,7 +7,6 @@ import { AuthGuardService } from './auth.guard.service ';
 import { UsuarioComponent } from './shared/usuario/usuario.component';
 import { UsuarioFormComponent } from './shared/usuario/usuario-form/usuario-form.component';
 import { TableComponent } from './shared/table/table.component';
-import { PivotTableComponent } from './shared/pivot-table/pivot-table.component';
 import { LoginComponent } from './shared/auth/login/login.component';
 
 const APP_ROUTES: Routes = [
@@ -20,12 +19,12 @@ const APP_ROUTES: Routes = [
       //SHARED
       {
         path: '',
-        loadChildren: 'app/shared/shared.module#SharedModule'
+        loadChildren: './shared/shared.module#SharedModule'
       },
       //SCC
       {
         path: '',
-        loadChildren: 'app/+scc/scc.module#SccModule'
+        loadChildren: './+scc/scc.module#SccModule'
       }
     ]
   },

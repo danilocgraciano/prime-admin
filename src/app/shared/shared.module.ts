@@ -21,8 +21,6 @@ import { InvalidMessageDirective } from './form-validation/InvalidmessageDirecti
 import { MyFormGroupDirective } from './form-validation/MyFormGroupDirective';
 import { MyFormControlDirective } from './form-validation/MyFormControlDirective';
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
-import { PivotTableComponent } from './pivot-table/pivot-table.component';
-import { FlexmonsterPivotModule } from 'ng-flexmonster';
 import { SharedRoutingModule } from './shared.routing.module';
 
 @NgModule({
@@ -31,8 +29,7 @@ import { SharedRoutingModule } from './shared.routing.module';
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    SharedRoutingModule,
-    FlexmonsterPivotModule
+    SharedRoutingModule
   ],
   declarations: [
     HomeComponent,
@@ -49,8 +46,7 @@ import { SharedRoutingModule } from './shared.routing.module';
     InvalidTypeDirective,
     MyFormGroupDirective,
     MyFormControlDirective,
-    ConfirmDialogComponent,
-    PivotTableComponent
+    ConfirmDialogComponent
   ],
   exports: [HomeComponent, InfoDialogComponent, InvalidMessageDirective, InvalidTypeDirective, MyFormGroupDirective, MyFormControlDirective],
   providers: [AuthService, AuthGuardService, UsuarioService],
