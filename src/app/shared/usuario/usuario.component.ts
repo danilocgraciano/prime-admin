@@ -19,8 +19,9 @@ import { ConfirmDialogComponent } from '../dialog/confirm-dialog/confirm-dialog.
 export class UsuarioComponent extends AbstractTableComponent implements AfterViewInit {
 
   static this: any;
+  url: string = '/usuario/';
   title: string;
-  private bsModalRef: BsModalRef;
+  private bsModalRef: BsModalRef;c
 
   @ViewChild('nome') txtNome: ElementRef;
   @ViewChild('email') txtEmail: ElementRef;
@@ -32,7 +33,7 @@ export class UsuarioComponent extends AbstractTableComponent implements AfterVie
     UsuarioComponent.this = this;
 
     UsuarioComponent.this.onDblclick.subscribe((data) => {
-      UsuarioComponent.this.router.navigate(['/usuario/' + data['id']]);
+      UsuarioComponent.this.router.navigate([this.url + data['id']]);
     });
 
   }
@@ -58,14 +59,14 @@ export class UsuarioComponent extends AbstractTableComponent implements AfterVie
     {
       text: 'Novo',
       action: function (e, dt, node, config) {
-        UsuarioComponent.this.router.navigate(['/usuario/new']);
+        UsuarioComponent.this.router.navigate([this.url + '/new']);
       }
     }, {
       text: 'Editar',
       action: function (e, dt, node, config) {
         let selectedRow = UsuarioComponent.this.getSelection();
         if (selectedRow) {
-          UsuarioComponent.this.router.navigate(['/usuario/' + selectedRow['id']]);
+          UsuarioComponent.this.router.navigate([this.url + selectedRow['id']]);
         } else {
           const initialState = {
             message: 'Selecione o registro que deseja alterar',
