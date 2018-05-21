@@ -9,7 +9,6 @@ import { NegocianteService } from './negociante.service';
 import { InfoDialogComponent } from '../../shared/dialog/info-dialog/info-dialog.component';
 import { ConfirmDialogComponent } from '../../shared/dialog/confirm-dialog/confirm-dialog.component';
 import { DataTableSetup } from '../../shared/table/DataTableSetup';
-declare var $;
 
 @Component({
   selector: 'app-negociante',
@@ -149,37 +148,25 @@ export class NegocianteComponent extends AbstractTableComponent implements OnIni
       text: 'Exibir'
     }];
 
-    ngOnInit() {
+  ngOnInit() {
 
-      this.init("myTable", new DataTableSetup({
-        processing: true,
-        serverSide: true,
-        ajax: {
-          type: "GET",
-          url: "/api/negociante"
-          // data: function (d) {
-          //   d.usuario_nome = $('#nome').val();
-          //   d.usuario_email = $('#email').val();
-          // }
-        },
-        buttons: this.buttons,
-        columns: this.columns,
-        columnDefs: [
-          {
-            targets: [0],
-            visible: false,
-            searchable: false
-          }
-        ]
-      }));
-  
-      Observable.fromEvent($('#nome'), 'keyup').debounceTime(500).subscribe((x) => {
-        this.myTable.draw();
-      });
-  
-      Observable.fromEvent($('#email'), 'keyup').debounceTime(500).subscribe((x) => {
-        this.myTable.draw();
-      });
-    }
+    this.init("myTable", new DataTableSetup({
+      processing: true,
+      serverSide: true,
+      ajax: {
+        type: "GET",
+        url: "/api/negociante"
+      },
+      buttons: this.buttons,
+      columns: this.columns,
+      columnDefs: [
+        {
+          targets: [0],
+          visible: false,
+          searchable: false
+        }
+      ]
+    }));
+  }
 
 }
