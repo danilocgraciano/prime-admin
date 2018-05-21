@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { AbstractTableComponent } from '../table/abstract.table.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -10,18 +10,20 @@ import { InfoDialogComponent } from '../dialog/info-dialog/info-dialog.component
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { UsuarioService } from './usuario.service';
 import { ConfirmDialogComponent } from '../dialog/confirm-dialog/confirm-dialog.component';
-declare var $;
 
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
   styleUrls: ['./usuario.component.css']
 })
-export class UsuarioComponent extends AbstractTableComponent implements OnInit {
+export class UsuarioComponent extends AbstractTableComponent implements AfterViewInit {
 
   static this: any;
   title: string;
   private bsModalRef: BsModalRef;
+
+  @ViewChild('nome') txtNome: ElementRef;
+  @ViewChild('email') txtEmail: ElementRef;
 
   constructor(private router: Router, private route: ActivatedRoute, private titleService: Title,
     private modalService: BsModalService, private usuarioService: UsuarioService) {
@@ -144,7 +146,8 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
       text: 'Exibir'
     }];
 
-  ngOnInit() {
+
+  ngAfterViewInit() {
 
     this.init("myTable", new DataTableSetup({
       processing: true,
@@ -154,8 +157,8 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
         type: "GET",
         url: "/api/usuario",
         data: function (d) {
-          d.usuario_nome = $('#nome').val();
-          d.usuario_email = $('#email').val();
+          d.usuario_nome = UsuarioComponent.this.txtNome.nativeElement.value;
+          d.usuario_email = UsuarioComponent.this.txtEmail.nativeElement.value;
         }
       },
       buttons: this.buttons,
@@ -169,11 +172,11 @@ export class UsuarioComponent extends AbstractTableComponent implements OnInit {
       ]
     }));
 
-    Observable.fromEvent($('#nome'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtNome.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent($('#email'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtEmail.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
   }
