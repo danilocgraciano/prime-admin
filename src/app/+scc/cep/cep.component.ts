@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AbstractTableComponent } from '../../shared/table/abstract.table.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -9,7 +9,6 @@ import { InfoDialogComponent } from '../../shared/dialog/info-dialog/info-dialog
 import { ConfirmDialogComponent } from '../../shared/dialog/confirm-dialog/confirm-dialog.component';
 import { DataTableSetup } from '../../shared/table/DataTableSetup';
 import { CepService } from './cep.service';
-declare var $;
 
 @Component({
   selector: 'app-cep',
@@ -22,6 +21,11 @@ export class CepComponent extends AbstractTableComponent implements OnInit {
   url: string = '/cep/';
   title: string;
   private bsModalRef: BsModalRef;
+
+  @ViewChild('codigo') txtCodigo: ElementRef;
+  @ViewChild('logradouro') txtLogradouro: ElementRef;
+  @ViewChild('bairro') txtBairro: ElementRef;
+  @ViewChild('municipio') txtMunicipio: ElementRef;
 
   constructor(private router: Router, private route: ActivatedRoute, private titleService: Title,
     private modalService: BsModalService, private service: CepService) {
@@ -164,10 +168,10 @@ export class CepComponent extends AbstractTableComponent implements OnInit {
         type: "GET",
         url: "/api/cep",
         data: function (d) {
-          d.cep_codigo = $('#codigo').val();
-          d.cep_logradouro = $('#logradouro').val();
-          d.cep_bairro = $('#bairro').val();
-          d.municipio_nome = $('#municipio').val();
+          d.cep_codigo = CepComponent.this.txtCodigo.nativeElement.value;
+          d.cep_logradouro = CepComponent.this.txtLogradouro.nativeElement.value;
+          d.cep_bairro = CepComponent.this.txtBairro.nativeElement.value;
+          d.municipio_nome = CepComponent.this.txtMunicipio.nativeElement.value;
         }
       },
       buttons: this.buttons,
@@ -181,19 +185,19 @@ export class CepComponent extends AbstractTableComponent implements OnInit {
       ]
     }));
 
-    Observable.fromEvent($('#codigo'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtCodigo.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent($('#logradouro'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtLogradouro.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent($('#bairro'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtBairro.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent($('#municipio'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtMunicipio.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
   }

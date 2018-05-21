@@ -9,7 +9,6 @@ import { InfoDialogComponent } from '../../shared/dialog/info-dialog/info-dialog
 import { ConfirmDialogComponent } from '../../shared/dialog/confirm-dialog/confirm-dialog.component';
 import { DataTableSetup } from '../../shared/table/DataTableSetup';
 import { UfService } from './uf.service';
-declare var $;
 
 @Component({
   selector: 'app-uf',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AbstractTableComponent } from '../../shared/table/abstract.table.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -9,7 +9,6 @@ import { InfoDialogComponent } from '../../shared/dialog/info-dialog/info-dialog
 import { ConfirmDialogComponent } from '../../shared/dialog/confirm-dialog/confirm-dialog.component';
 import { DataTableSetup } from '../../shared/table/DataTableSetup';
 import { MunicipioService } from './municipio.service';
-declare var $;
 
 @Component({
   selector: 'app-municipio',
@@ -22,6 +21,11 @@ export class MunicipioComponent extends AbstractTableComponent implements OnInit
   static this: any;
   title: string;
   private bsModalRef: BsModalRef;
+
+  @ViewChild('nome') txtNome: ElementRef;
+  @ViewChild('codigoMunicipal') txtCodigoMunicipal: ElementRef;
+  @ViewChild('uf') txtUf: ElementRef;
+  @ViewChild('pais') txtPais: ElementRef;
 
   constructor(private router: Router, private route: ActivatedRoute, private titleService: Title,
     private modalService: BsModalService, private service: MunicipioService) {
@@ -164,10 +168,10 @@ export class MunicipioComponent extends AbstractTableComponent implements OnInit
         type: "GET",
         url: "/api/municipio",
         data: function (d) {
-          d.municipio_nome = $('#nome').val();
-          d.municipio_codigomunicipal = $('#codigoMunicipal').val();
-          d.uf_sigla = $('#uf').val();
-          d.pais_descricao = $('#pais').val();
+          d.municipio_nome = MunicipioComponent.this.txtNome.nativeElement.value;
+          d.municipio_codigomunicipal = MunicipioComponent.this.txtCodigoMunicipal.nativeElement.value;
+          d.uf_sigla = MunicipioComponent.this.txtUf.nativeElement.value;
+          d.pais_descricao = MunicipioComponent.this.txtPais.nativeElement.value;
         }
       },
       buttons: this.buttons,
@@ -181,19 +185,19 @@ export class MunicipioComponent extends AbstractTableComponent implements OnInit
       ]
     }));
 
-    Observable.fromEvent($('#nome'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtNome.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent($('#codigoMunicipal'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtCodigoMunicipal.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent($('#uf'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtUf.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent($('#pais'), 'keyup').debounceTime(500).subscribe((x) => {
+    Observable.fromEvent(this.txtPais.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
       this.myTable.draw();
     });
   }
