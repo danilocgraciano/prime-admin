@@ -4,11 +4,11 @@ Este é a codificação de um template administrativo, inspirado no [Bootstrap D
 
 O objetivo deste template é que a cada novo projeto não seja necesário configurar todos os componentes novamente, como tabelas, rotas, menu, sidebar, login, etc...
 
-Assim pode-se focar diretamente nos requisitos do projeto em si.
+Assim pode-se focar diretamente nos requisitos do projeto.
 
 ## Tecnologias Utilizadas
 
-* Angular 5
+* Angular 6
 * Bootstrap 4
 * DataTables
 
