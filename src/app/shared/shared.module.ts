@@ -32,6 +32,7 @@ import { MyFormControlDirective } from './form-validation/MyFormControlDirective
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 import { SharedRoutingModule } from './shared.routing.module';
 import { MaskTelefonePipe } from './pipes/mask-telefone.pipe';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { MaskTelefonePipe } from './pipes/mask-telefone.pipe';
     InputMaskModule,
     ButtonModule,
     DialogModule,
+    CalendarModule,
     SharedRoutingModule
   ],
   declarations: [
@@ -63,9 +65,10 @@ import { MaskTelefonePipe } from './pipes/mask-telefone.pipe';
     MyFormGroupDirective,
     MyFormControlDirective,
     ConfirmDialogComponent,
-    MaskTelefonePipe
+    MaskTelefonePipe,
+    CalendarComponent
   ],
-  exports: [HomeComponent, InfoDialogComponent, InvalidMessageDirective, InvalidTypeDirective, MyFormGroupDirective, MyFormControlDirective, NgSelectModule, ModalModule, DataTableModule, DropdownModule, InputMaskModule, CalendarModule, MaskTelefonePipe, ButtonModule, DialogModule],
+  exports: [HomeComponent, InfoDialogComponent, InvalidMessageDirective, InvalidTypeDirective, MyFormGroupDirective, MyFormControlDirective, NgSelectModule, ModalModule, DataTableModule, DropdownModule, InputMaskModule, CalendarModule, CalendarComponent, MaskTelefonePipe, ButtonModule, DialogModule],
   providers: [AuthService, AuthGuardService, UsuarioService],
   entryComponents: [InfoDialogComponent, ConfirmDialogComponent]
 })

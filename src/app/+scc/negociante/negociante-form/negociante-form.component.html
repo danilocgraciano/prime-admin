@@ -85,7 +85,7 @@
 
         <div class="col-2">
           <label class="control-label" for="dataNascimento">Data Nascimento</label>
-          <p-calendar [utc]="true" [locale]=ptBR formControlName="dataNascimento" dateFormat="dd/mm/yy" [(ngModel)]="negociante.dataNascimento"></p-calendar>
+          <app-calendar formControlName="dataNascimento" [(ngModel)]="negociante.dataNascimento"></app-calendar>
         </div>
 
         <div myFormGroup="email" class="col-4">

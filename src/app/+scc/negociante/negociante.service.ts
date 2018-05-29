@@ -15,7 +15,7 @@ export class NegocianteService {
   readById(id: number) {
     return this.http.get(this.getUrl(id)).map((data) => {
       let negociante = data["data"];
-      negociante["dataNascimento"] = new Date(negociante["dataNascimento"] + 'T00:00:00.000Z');
+      negociante["dataNascimento"] = new Date(negociante["dataNascimento"] + 'T00:00:00');
       data["data"] = negociante;
       return data;
     });
