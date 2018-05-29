@@ -44,15 +44,15 @@
     </ng-template>
   </p-column>
 
-  <p-column field="cep" header="Município" [style]="{'width':'10%'}">
+  <p-column field="municipio" header="Município" [style]="{'width':'10%'}">
     <ng-template let-col let-endereco="rowData" pTemplate="body">
-      {{endereco[col.field]?.municipio?.nome}} - {{endereco[col.field]?.municipio?.uf?.sigla}}
+      {{endereco[col.field]?.nome}} - {{endereco[col.field]?.uf?.sigla}}
     </ng-template>
   </p-column>
 
-  <p-column field="cep" header="País" [style]="{'width':'5%'}">
+  <p-column field="municipio" header="País" [style]="{'width':'5%'}">
     <ng-template let-col let-endereco="rowData" pTemplate="body">
-      {{endereco[col.field]?.municipio?.pais?.descricao}}
+      {{endereco[col.field]?.pais?.descricao}}
     </ng-template>
   </p-column>
 
@@ -93,7 +93,8 @@
           <label for="cep" class="required">CEP</label>
           <div class="form-group" formGroupName="cep">
             <p-dropdown [(ngModel)]="_endereco.cep" [options]="cep$ | async" [autoWidth]=false optionLabel="codigo" dataKey="id" required="true"
-              appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado" [autoDisplayFirst]="false"></p-dropdown>
+              appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado" [autoDisplayFirst]="false"
+              (onChange)="onCepAddChange($event)"></p-dropdown>
           </div>
         </div>
 
@@ -142,24 +143,20 @@
         <div class="ui-grid-col-3">
           <label for="municipio" class="required">Município</label>
 
-          <div class="form-group" formGroupName="cep">
-            <div class="form-group" formGroupName="municipio">
-              <p-dropdown [(ngModel)]="_endereco.cep.municipio" [options]="municipio$ | async" [autoWidth]=false optionLabel="nome" dataKey="id"
-                required="true" appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado"
-                [autoDisplayFirst]="false" [disabled]="true"></p-dropdown>
-            </div>
+          <div class="form-group" formGroupName="municipio">
+            <p-dropdown [(ngModel)]="_endereco.municipio" [options]="municipio$ | async" [autoWidth]=false optionLabel="nome" dataKey="id"
+              required="true" appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado"
+              [autoDisplayFirst]="false" [disabled]="true"></p-dropdown>
           </div>
         </div>
 
         <div class="ui-grid-col-3">
           <label for="pais" class="required">País</label>
-          <div class="form-group" formGroupName="cep">
-            <div class="form-group" formGroupName="municipio">
-              <div class="form-group" formGroupName="pais">
-                <p-dropdown [(ngModel)]="_endereco.cep.municipio.pais" [options]="pais$ | async" [autoWidth]=false optionLabel="descricao"
-                  dataKey="id" required="true" appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado"
-                  [autoDisplayFirst]="false" [disabled]="true"></p-dropdown>
-              </div>
+          <div class="form-group" formGroupName="municipio">
+            <div class="form-group" formGroupName="pais">
+              <p-dropdown [(ngModel)]="_endereco.municipio.pais" [options]="pais$ | async" [autoWidth]=false optionLabel="descricao"
+                dataKey="id" required="true" appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado"
+                [autoDisplayFirst]="false" [disabled]="true"></p-dropdown>
             </div>
           </div>
         </div>

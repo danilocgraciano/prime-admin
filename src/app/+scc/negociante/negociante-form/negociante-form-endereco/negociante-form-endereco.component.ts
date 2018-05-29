@@ -49,12 +49,12 @@ export class NegocianteFormEnderecoComponent implements OnInit {
       complemento: ['', []],
       bairro: ['', [Validators.required]],
       cep: this.formBuilder.group({
+        id: ['', [Validators.required]]
+      }),
+      municipio: this.formBuilder.group({
         id: ['', [Validators.required]],
-        municipio: this.formBuilder.group({
-          id: ['', [Validators.required]],
-          pais: this.formBuilder.group({
-            id: ['', [Validators.required]]
-          })
+        pais: this.formBuilder.group({
+          id: ['', [Validators.required]]
         })
       })
     });
@@ -79,6 +79,18 @@ export class NegocianteFormEnderecoComponent implements OnInit {
     endereco.tipoEndereco = this.enderecoOld.tipoEndereco;
 
     this.dataSource[this.dataSource.indexOf(this.enderecoOld)] = endereco;
+  }
+
+  onCepAddChange(event) {
+
+    let cep: Cep = event.value;
+    this._endereco.bairro = cep.bairro
+    this._endereco.cep = cep;
+    this._endereco.complemento = '';
+    this._endereco.endereco = cep.logradouro;
+    this._endereco.municipio = cep.municipio;
+    this._endereco.numero = '';
+    this._endereco.municipio.pais = cep.municipio.pais;
   }
 
   onShowClick(event) {
