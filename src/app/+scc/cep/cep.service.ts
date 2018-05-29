@@ -8,6 +8,10 @@ export class CepService {
 
   constructor(private http: HttpClient) { }
 
+  search() {
+    return this.http.get(this.url);
+  }
+
   private getUrl(id) {
     return this.url + "/" + id;
   }

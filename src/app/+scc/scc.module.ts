@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { NegocianteComponent } from './negociante/negociante.component';
 import { NegocianteService } from './negociante/negociante.service';
 import { NegocianteFormComponent } from './negociante/negociante-form/negociante-form.component';
@@ -18,6 +19,9 @@ import { MunicipioService } from './municipio/municipio.service';
 import { CepComponent } from './cep/cep.component';
 import { CepFormComponent } from './cep/cep-form/cep-form.component';
 import { CepService } from './cep/cep.service';
+import { NegocianteFormContatosComponent } from './negociante/negociante-form/negociante-form-contatos/negociante-form-contatos.component';
+import { NegocianteFormEnderecoComponent } from './negociante/negociante-form/negociante-form-endereco/negociante-form-endereco.component';
+import { NegocianteFormTelefoneComponent } from './negociante/negociante-form/negociante-form-telefone/negociante-form-telefone.component';
 
 @NgModule({
   imports: [
@@ -30,6 +34,9 @@ import { CepService } from './cep/cep.service';
   declarations: [
     NegocianteComponent,
     NegocianteFormComponent,
+    NegocianteFormTelefoneComponent,
+    NegocianteFormEnderecoComponent,
+    NegocianteFormContatosComponent,
     UfComponent,
     UfFormComponent,
     PaisComponent,

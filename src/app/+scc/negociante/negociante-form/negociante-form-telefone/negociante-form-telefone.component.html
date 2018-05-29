@@ -1,0 +1,68 @@
+<p-dataTable [value]="dataSource" [editable]="true" [immutable]=false emptyMessage="Nenhum registro encontrado.">
+
+  <p-column field="tipoNumero" header="Tipo" [editable]="true">
+    <ng-template let-col let-telefone="rowData" pTemplate="editor">
+      <p-dropdown [(ngModel)]="telefone[col.field]" [options]="tipoTelefoneList" [autoWidth]="false" [style]="{'width':'100%'}"
+        required="true" appendTo="body"></p-dropdown>
+    </ng-template>
+    <ng-template let-col let-telefone="rowData" pTemplate="body">
+      {{tipoTelefoneList[telefone[col.field]].label}}
+    </ng-template>
+  </p-column>
+
+  <p-column field="telefone" header="Telefone" [editable]="true">
+    <ng-template let-col let-telefone="rowData" pTemplate="body">
+      {{telefone[col.field] | maskTelefone}}
+    </ng-template>
+  </p-column>
+
+  <p-column styleClass="col-button" [style]="{'width':'40px'}">
+    <ng-template pTemplate="header">
+      <a href (click)="onShowClick($event)">
+        <i class="oi oi-plus"></i>
+      </a>
+    </ng-template>
+    <ng-template let-col let-telefone="rowData" pTemplate="body">
+      <a class="actionDelete" href (click)="onDeleteClick($event,telefone)">
+        <i class="oi oi-circle-x"></i>
+      </a>
+    </ng-template>
+  </p-column>
+
+</p-dataTable>
+
+<p-dialog header="Novo Telefone" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400">
+
+  <form [formGroup]="form" (ngSubmit)="onAddClick($event)">
+
+    <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="_telefone.id" hidden>
+
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6">
+          <label for="tipoTelefone" class="required">Tipo</label>
+          <p-dropdown [options]="tipoTelefoneList" [autoWidth]="false" required="true" appendTo="body" [(ngModel)]="_telefone.tipoNumero"
+            formControlName="tipoNumero"></p-dropdown>
+        </div>
+
+        <div class="ui-grid-col-6">
+          <label for="telefone" class="required">Telefone</label>
+          <div myFormGroup="telefone">
+            <input type="text" myFormControl id="telefone" formControlName="telefone" [(ngModel)]="_telefone.telefone">
+            <div invalidMessage>
+              <p *invalidType="'required'">Telefone é um campo obrigatório</p>
+              <p *invalidType="'pattern'">Telefone deve possuir somente números</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
+        <a href class="btn btn-secondary" (click)="displayDialog=false">Sair</a>
+      </div>
+    </p-footer>
+  </form>
+</p-dialog>

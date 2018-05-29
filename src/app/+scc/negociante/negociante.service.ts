@@ -13,7 +13,12 @@ export class NegocianteService {
   }
 
   readById(id: number) {
-    return this.http.get(this.getUrl(id));
+    return this.http.get(this.getUrl(id)).map((data) => {
+      let negociante = data["data"];
+      negociante["dataNascimento"] = new Date(negociante["dataNascimento"] + 'T00:00:00.000Z');
+      data["data"] = negociante;
+      return data;
+    });
   }
 
   create(obj) {

@@ -2,23 +2,162 @@
   {{title}}
   <small class="text-muted">{{mode}}</small>
 </h5>
-
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <div class="form-group">
-    <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="negociante.id" hidden>
+  <div class="row">
+    <div class="form-group">
+      <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="negociante.id" hidden>
+    </div>
+
+    <div myFormGroup="codigo" class="col-1">
+      <label class="control-label" for="codigo">Código</label>
+      <input type="text" myFormControl id="codigo" formControlName="codigo" [(ngModel)]="negociante.codigo" [attr.disabled]="negociante.id">
+    </div>
+
+    <div myFormGroup="nome" [required]="true" class="col-11">
+      <label class="control-label" for="nome">Nome</label>
+      <input type="text" myFormControl id="nome" formControlName="nome" [(ngModel)]="negociante.nome" autofocus>
+      <div invalidMessage>
+        <p *invalidType="'required'">Nome é um campo obrigatório</p>
+      </div>
+    </div>
   </div>
 
-  <div myFormGroup="codigo">
-    <label class="control-label" for="codigo">Código</label>
-    <input type="text" myFormControl id="codigo" formControlName="codigo" [(ngModel)]="negociante.codigo">
+  <div class="card card-margin">
+    <div class="card-body">
+      <h6 class="card-title">Dados Básicos</h6>
+
+      <div class="row">
+        <div myFormGroup="nomeFantasia" class="col-12">
+          <label class="control-label" for="nomeFantasia">Nome Fantasia</label>
+          <input type="text" myFormControl id="nomeFantasia" formControlName="nomeFantasia" [(ngModel)]="negociante.nomeFantasia">
+        </div>
+      </div>
+
+      <div class="row">
+        <div myFormGroup="tipoNegociante" [required]="true" class="col-2">
+          <label class="control-label" for="tipoNegociante">Tipo</label>
+          <ng-select [items]="tipoNegociante" bindLabel="descricao" bindValue="id" formControlName="tipoNegociante" [(ngModel)]="negociante.tipoNegociante"></ng-select>
+          <div invalidMessage>
+            <p *invalidType="'required'">Tipo é um campo obrigatório</p>
+          </div>
+        </div>
+
+        <div myFormGroup="tipoRegimeTributacao" [required]="true" class="col-2">
+          <label class="control-label" for="tipoRegimeTributacao">Tributação</label>
+          <ng-select [items]="tipoRegimeTributacao" bindLabel="descricao" bindValue="id" formControlName="tipoRegimeTributacao" [(ngModel)]="negociante.tipoRegimeTributacao"></ng-select>
+          <div invalidMessage>
+            <p *invalidType="'required'">Tributação é um campo obrigatório</p>
+          </div>
+        </div>
+
+        <div myFormGroup="contribuinteIcms" [required]="true" class="col-2">
+          <label class="control-label" for="contribuinteIcms">Contribuinte ICMS</label>
+          <ng-select [items]="listSimNao" bindLabel="descricao" bindValue="id" formControlName="contribuinteIcms" [(ngModel)]="negociante.contribuinteIcms"></ng-select>
+          <div invalidMessage>
+            <p *invalidType="'required'">Contribuinte ICMS é um campo obrigatório</p>
+          </div>
+        </div>
+
+        <div myFormGroup="cpfCnpj" class="col-2">
+          <label class="control-label" for="cpfCnpj">CPF / CNPJ</label>
+          <input type="text" myFormControl id="cpfCnpj" formControlName="cpfCnpj" [(ngModel)]="negociante.cpfCnpj">
+        </div>
+
+        <div myFormGroup="inscricaoEstadual" class="col-2">
+          <label class="control-label" for="inscricaoEstadual">Inscrição Estadual</label>
+          <input type="text" myFormControl id="rg" formControlName="inscricaoEstadual" [(ngModel)]="negociante.inscricaoEstadual">
+        </div>
+
+        <div myFormGroup="suframa" class="col-2">
+          <label class="control-label" for="suframa">Suframa</label>
+          <input type="text" myFormControl id="suframa" formControlName="suframa" [(ngModel)]="negociante.suframa">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div myFormGroup="rg" class="col-2">
+          <label class="control-label" for="rg">RG</label>
+          <input type="text" myFormControl id="rg" formControlName="rg" [(ngModel)]="negociante.rg">
+        </div>
+
+        <div class="col-2">
+          <label class="control-label" for="dataNascimento">Data Nascimento</label>
+          <p-calendar [utc]="true" [locale]=ptBR formControlName="dataNascimento" dateFormat="dd/mm/yy" [(ngModel)]="negociante.dataNascimento"></p-calendar>
+        </div>
+
+        <div myFormGroup="email" class="col-4">
+          <label class="control-label" for="email">E-mail</label>
+          <input type="text" myFormControl id="email" formControlName="email" [(ngModel)]="negociante.email">
+          <div invalidMessage>
+            <p *invalidType="'email'">E-mail Inválido</p>
+          </div>
+        </div>
+
+        <div myFormGroup="homePage" class="col-4">
+          <label class="control-label" for="homePage">Home Page</label>
+          <input type="text" myFormControl id="homePage" formControlName="homePage" [(ngModel)]="negociante.homePage">
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div myFormGroup="caixaPostal" class="col-2">
+          <label class="control-label" for="caixaPostal">Caixa Postal</label>
+          <input type="text" myFormControl id="caixaPostal" formControlName="caixaPostal" [(ngModel)]="negociante.caixaPostal">
+        </div>
+
+        <div myFormGroup="sexo" class="col-3">
+          <label class="control-label" for="sexo">Sexo</label>
+          <div class="row">
+            <div class="col">
+              <div class="form-check form-check-inline">
+                <label class="form-check-label" for="feminino">
+                  <input class="form-check-input" type="radio" name="sexo" id="feminino" value="feminino" formControlName="sexo" [(ngModel)]="negociante.sexo"> Feminino
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check form-check-inline">
+                <label class="form-check-label" for="masculino">
+                  <input class="form-check-input" type="radio" name="sexo" id="masculino" value="masculino" formControlName="sexo" [(ngModel)]="negociante.sexo"> Masculino
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div myFormGroup="observacao">
+            <label for="observacao">Observação</label>
+            <textarea myFormControl id="observacao" rows="4" formControlName="observacao" [(ngModel)]="negociante.observacao"></textarea>
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="telefones">Telefones</label>
+          <app-negociante-form-telefone [(telefones)]="negociante.telefones"></app-negociante-form-telefone>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
-  <div myFormGroup="nome" [required]="true">
-    <label class="control-label" for="nome">Nome</label>
-    <input type="text" myFormControl id="nome" formControlName="nome" [(ngModel)]="negociante.nome" autofocus>
-    <div invalidMessage>
-      <p *invalidType="'required'">Nome é um campo obrigatório</p>
+  <div class="card card-margin">
+    <div class="card-body">
+      <h6 class="card-title">Endereço</h6>
+      <app-negociante-form-endereco [(enderecos)]="negociante.enderecos"></app-negociante-form-endereco>
+    </div>
+  </div>
+
+  <div class="card card-margin">
+    <div class="card-body">
+      <h6 class="card-title">Contatos</h6>
+      <app-negociante-form-contatos></app-negociante-form-contatos>
     </div>
   </div>
 

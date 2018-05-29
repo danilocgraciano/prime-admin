@@ -1,0 +1,179 @@
+<p-dataTable [value]="dataSource" [editable]=true [immutable]=false emptyMessage="Nenhum registro encontrado.">
+
+  <p-column field="tipoEndereco" header="Tipo" [editable]="true" [style]="{'width':'5%'}">
+    <ng-template let-col let-endereco="rowData" pTemplate="editor">
+      <p-dropdown [(ngModel)]="endereco[col.field]" [options]="tipoEnderecoList" [autoWidth]="false" [style]="{'width':'100%'}"
+        required="true" appendTo="body"></p-dropdown>
+    </ng-template>
+    <ng-template let-col let-endereco="rowData" pTemplate="body">
+      {{tipoEnderecoList[endereco[col.field]].label}}
+    </ng-template>
+  </p-column>
+
+  <p-column field="cep" header="CEP" [editable]="true" [style]="{'width':'5%'}">
+    <ng-template let-col let-endereco="rowData" pTemplate="editor">
+      <p-dropdown [(ngModel)]="endereco[col.field]" [options]="cep$ | async" [autoWidth]=false optionLabel="codigo" dataKey="id"
+        [style]="{'width':'100%'}" required="true" appendTo="body" [filter]="true" (onFocus)="enderecoOld = endereco" (onChange)="onCepChange($event)"></p-dropdown>
+    </ng-template>
+    <ng-template let-col let-endereco="rowData" pTemplate="body">
+      {{endereco?.cep?.codigo}}
+    </ng-template>
+  </p-column>
+
+  <p-column field="endereco" header="Endereço" [editable]="true" [style]="{'width':'10%'}">
+    <ng-template let-col let-endereco="rowData" pTemplate="body">
+      {{endereco[col.field]}}
+    </ng-template>
+  </p-column>
+
+  <p-column field="numero" header="Número" [editable]="true" [style]="{'width':'5%'}">
+    <ng-template let-col let-endereco="rowData" pTemplate="body">
+      {{endereco[col.field]}}
+    </ng-template>
+  </p-column>
+
+  <p-column field="complemento" header="Complemento" [editable]="true" [style]="{'width':'10%'}">
+    <ng-template let-col let-endereco="rowData" pTemplate="body">
+      {{endereco[col.field]}}
+    </ng-template>
+  </p-column>
+
+  <p-column field="bairro" header="Bairro" [editable]="true" [style]="{'width':'10%'}">
+    <ng-template let-col let-endereco="rowData" pTemplate="body">
+      {{endereco[col.field]}}
+    </ng-template>
+  </p-column>
+
+  <p-column field="cep" header="Município" [style]="{'width':'10%'}">
+    <ng-template let-col let-endereco="rowData" pTemplate="body">
+      {{endereco[col.field]?.municipio?.nome}} - {{endereco[col.field]?.municipio?.uf?.sigla}}
+    </ng-template>
+  </p-column>
+
+  <p-column field="cep" header="País" [style]="{'width':'5%'}">
+    <ng-template let-col let-endereco="rowData" pTemplate="body">
+      {{endereco[col.field]?.municipio?.pais?.descricao}}
+    </ng-template>
+  </p-column>
+
+  <p-column styleClass="col-button" [style]="{'width':'40px'}">
+    <ng-template pTemplate="header">
+      <a href (click)="onShowClick($event)">
+        <i class="oi oi-plus"></i>
+      </a>
+    </ng-template>
+    <ng-template let-col let-endereco="rowData" pTemplate="body">
+      <div align="center">
+        <a class="actionDelete" href (click)="onDeleteClick($event,endereco)">
+          <i class="oi oi-circle-x"></i>
+        </a>
+      </div>
+    </ng-template>
+  </p-column>
+
+</p-dataTable>
+
+<p-dialog header="Novo Endereço" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="800">
+
+  <form [formGroup]="form" (ngSubmit)="onAddClick($event)">
+
+    <input type="text" class="form-control" id="id" formControlName="id" [(ngModel)]="_endereco.id" hidden>
+
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+
+      <div class="ui-grid-row">
+
+        <div class="ui-grid-col-2">
+          <label for="tipoTelefone">Tipo</label>
+          <p-dropdown [options]="tipoEnderecoList" [autoWidth]="false" required="true" appendTo="body" [(ngModel)]="_endereco.tipoEndereco"
+            formControlName="tipoEndereco" emptyFilterMessage="Nenhum registro encontrado" [autoDisplayFirst]="false"></p-dropdown>
+        </div>
+
+        <div class="ui-grid-col-2">
+          <label for="cep" class="required">CEP</label>
+          <div class="form-group" formGroupName="cep">
+            <p-dropdown [(ngModel)]="_endereco.cep" [options]="cep$ | async" [autoWidth]=false optionLabel="codigo" dataKey="id" required="true"
+              appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado" [autoDisplayFirst]="false"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="ui-grid-col-10">
+          <label for="endereco" class="required">Endereço</label>
+          <div myFormGroup="endereco">
+            <input type="text" myFormControl id="endereco" formControlName="endereco" [(ngModel)]="_endereco.endereco">
+            <div invalidMessage>
+              <p *invalidType="'required'">Endereço é um campo obrigatório</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-grid-col-2">
+          <label for="numero" class="required">Número</label>
+          <div myFormGroup="numero">
+            <input type="text" myFormControl id="numero" formControlName="numero" [(ngModel)]="_endereco.numero">
+            <div invalidMessage>
+              <p *invalidType="'required'">Número é um campo obrigatório</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="ui-grid-row">
+
+        <div class="ui-grid-col-3">
+          <label for="complemento">Complemento</label>
+          <div myFormGroup="complemento">
+            <input type="text" myFormControl id="complemento" formControlName="complemento" [(ngModel)]="_endereco.complemento">
+          </div>
+        </div>
+
+        <div class="ui-grid-col-3">
+          <label for="bairro" class="required">Bairro</label>
+
+          <div myFormGroup="bairro">
+            <input type="text" myFormControl id="bairro" formControlName="bairro" [(ngModel)]="_endereco.bairro">
+            <div invalidMessage>
+              <p *invalidType="'required'">Bairro é um campo obrigatório</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-grid-col-3">
+          <label for="municipio" class="required">Município</label>
+
+          <div class="form-group" formGroupName="cep">
+            <div class="form-group" formGroupName="municipio">
+              <p-dropdown [(ngModel)]="_endereco.cep.municipio" [options]="municipio$ | async" [autoWidth]=false optionLabel="nome" dataKey="id"
+                required="true" appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado"
+                [autoDisplayFirst]="false" [disabled]="true"></p-dropdown>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-grid-col-3">
+          <label for="pais" class="required">País</label>
+          <div class="form-group" formGroupName="cep">
+            <div class="form-group" formGroupName="municipio">
+              <div class="form-group" formGroupName="pais">
+                <p-dropdown [(ngModel)]="_endereco.cep.municipio.pais" [options]="pais$ | async" [autoWidth]=false optionLabel="descricao"
+                  dataKey="id" required="true" appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado"
+                  [autoDisplayFirst]="false" [disabled]="true"></p-dropdown>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
+        <a href class="btn btn-secondary" (click)="displayDialog=false">Sair</a>
+      </div>
+    </p-footer>
+  </form>
+</p-dialog>
