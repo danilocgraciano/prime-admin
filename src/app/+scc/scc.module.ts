@@ -19,7 +19,6 @@ import { MunicipioService } from './municipio/municipio.service';
 import { CepComponent } from './cep/cep.component';
 import { CepFormComponent } from './cep/cep-form/cep-form.component';
 import { CepService } from './cep/cep.service';
-import { NegocianteFormContatosComponent } from './negociante/negociante-form/negociante-form-contatos/negociante-form-contatos.component';
 import { NegocianteFormEnderecoComponent } from './negociante/negociante-form/negociante-form-endereco/negociante-form-endereco.component';
 import { NegocianteFormTelefoneComponent } from './negociante/negociante-form/negociante-form-telefone/negociante-form-telefone.component';
 
@@ -36,7 +35,6 @@ import { NegocianteFormTelefoneComponent } from './negociante/negociante-form/ne
     NegocianteFormComponent,
     NegocianteFormTelefoneComponent,
     NegocianteFormEnderecoComponent,
-    NegocianteFormContatosComponent,
     UfComponent,
     UfFormComponent,
     PaisComponent,
