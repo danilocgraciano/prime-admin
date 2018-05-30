@@ -43,6 +43,27 @@
           </div>
         </div>
 
+        <div myFormGroup="_cpf" class="col-2" *ngIf="negociante.tipoNegociante == 0">
+          <label class="control-label" for="_cpf">CPF / CNPJ</label>
+          <p-inputMask mask="999.999.999-99" formControlName="_cpf" [(ngModel)]="negociante._cpf" #txtCpf></p-inputMask>
+          <div invalidMessage>
+            <p *invalidType="'valid'">CPF Inválido</p>
+          </div>
+        </div>
+
+        <div myFormGroup="_cnpj" class="col-2" *ngIf="negociante.tipoNegociante == 1">
+          <label class="control-label" for="_cnpj">CPF / CNPJ</label>
+          <p-inputMask mask="99.999.999/9999.99" formControlName="_cnpj" [(ngModel)]="negociante._cnpj" #txtCnpj></p-inputMask>
+          <div invalidMessage>
+            <p *invalidType="'valid'">CNPJ Inválido</p>
+          </div>
+        </div>
+
+        <div myFormGroup="_extOut" class="col-2" *ngIf="negociante.tipoNegociante == 2 || negociante.tipoNegociante == 3">
+          <label class="control-label" for="_extOut">CPF / CNPJ</label>
+          <input type="text" class="form-control" formControlName="_extOut" [(ngModel)]="negociante._extOut" #txtOutrosExterior>
+        </div>
+
         <div myFormGroup="tipoRegimeTributacao" [required]="true" class="col-2">
           <label class="control-label" for="tipoRegimeTributacao">Tributação</label>
           <ng-select [items]="tipoRegimeTributacao" bindLabel="descricao" bindValue="id" formControlName="tipoRegimeTributacao" [(ngModel)]="negociante.tipoRegimeTributacao"></ng-select>
@@ -57,11 +78,6 @@
           <div invalidMessage>
             <p *invalidType="'required'">Contribuinte ICMS é um campo obrigatório</p>
           </div>
-        </div>
-
-        <div myFormGroup="cpfCnpj" class="col-2">
-          <label class="control-label" for="cpfCnpj">CPF / CNPJ</label>
-          <input type="text" myFormControl id="cpfCnpj" formControlName="cpfCnpj" [(ngModel)]="negociante.cpfCnpj">
         </div>
 
         <div myFormGroup="inscricaoEstadual" class="col-2">

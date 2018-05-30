@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -7,6 +7,9 @@ import { Negociante } from '../negociante';
 import { NegocianteService } from '../negociante.service';
 import { InfoDialogComponent } from '../../../shared/dialog/info-dialog/info-dialog.component';
 import { LocaleSettings } from 'primeng/calendar';
+import { InputMask } from 'primeng/inputmask';
+import { ValidateCNPJ } from '../../../shared/form-validation/cnpj.validator';
+import { ValidateCPF } from '../../../shared/form-validation/cpf.validator';
 
 @Component({
   selector: 'app-negociante-form',
@@ -20,6 +23,10 @@ export class NegocianteFormComponent implements OnInit {
   form: FormGroup;
   title: string = 'Cadastro de Negociante';
   mode: string;
+
+  @ViewChild("txtCpf") txtCpf: InputMask;
+  @ViewChild("txtCnpj") txtCnpj: InputMask;
+  @ViewChild("txtOutrosExterior") txtOutrosExterior: ElementRef;
 
   tipoNegociante: Array<any> = [
     {
@@ -64,7 +71,7 @@ export class NegocianteFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.form = this.formBuilder.group({
       id: ['', []],
       codigo: ['', []],
@@ -72,7 +79,6 @@ export class NegocianteFormComponent implements OnInit {
         Validators.required
       ]],
       tipoNegociante: ['', Validators.required],
-      cpfCnpj: ['', []],
       inscricaoEstadual: ['', []],
       rg: ['', []],
       suframa: ['', []],
@@ -85,7 +91,10 @@ export class NegocianteFormComponent implements OnInit {
       nomeFantasia: ['', []],
       inativo: ['', []],
       sexo: ['', []],
-      dataNascimento: ['', []]
+      dataNascimento: ['', []],
+      _cpf: ['', [ValidateCPF]],
+      _cnpj: ['', [ValidateCNPJ]],
+      _extOut: ['', []]
     });
 
     var id = this.route.params.subscribe(params => {
@@ -107,13 +116,45 @@ export class NegocianteFormComponent implements OnInit {
           });
         } else {
           this.negociante = resp['data'];
+          this.refresh(this.negociante);
         }
       });
 
     });
   }
 
+  refresh(negociante) {
+
+    if (negociante.tipoNegociante == 0)//FISICA
+      negociante._cpf = negociante.cpfCnpj;
+
+    if (negociante.tipoNegociante == 1)//JURIDICA
+      negociante._cnpj = negociante.cpfCnpj;
+
+    if (negociante.tipoNegociante == 2 || negociante.tipoNegociante == 3)//EXTERIOR / OUTROS
+      negociante._extOut = negociante.cpfCnpj;
+  }
+
+  flush() {
+
+    if (this.negociante.tipoNegociante == 0)
+      this.negociante.cpfCnpj = this.txtCpf.value;
+
+    if (this.negociante.tipoNegociante == 1)
+      this.negociante.cpfCnpj = this.txtCnpj.value;
+
+    if (this.negociante.tipoNegociante == 2 || this.negociante.tipoNegociante == 3)
+      this.negociante.cpfCnpj = this.txtOutrosExterior.nativeElement.value;
+
+    this.negociante._cnpj = null;
+    this.negociante._cpf = null;
+    this.negociante._extOut = null;
+  }
+
   onSubmit() {
+
+    this.flush();
+
     if (this.form.valid) {
       var result;
       var id = this.form.value.id;

@@ -8,6 +8,9 @@ export class Negociante {
     nome: string;
     tipoNegociante: number;
     cpfCnpj: string;
+    _cpf:string;
+    _cnpj:string;
+    _extOut:string;
     inscricaoEstadual: string;
     rg: string;
     suframa: string;
