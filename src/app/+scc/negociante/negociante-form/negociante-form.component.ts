@@ -80,6 +80,7 @@ export class NegocianteFormComponent implements OnInit {
       ]],
       tipoNegociante: ['', Validators.required],
       inscricaoEstadual: ['', []],
+      inscricaoMunicipal: ['', []],
       rg: ['', []],
       suframa: ['', []],
       contribuinteIcms: ['', [Validators.required]],
@@ -145,10 +146,6 @@ export class NegocianteFormComponent implements OnInit {
 
     if (this.negociante.tipoNegociante == 2 || this.negociante.tipoNegociante == 3)
       this.negociante.cpfCnpj = this.txtOutrosExterior.nativeElement.value;
-
-    this.negociante._cnpj = null;
-    this.negociante._cpf = null;
-    this.negociante._extOut = null;
   }
 
   onSubmit() {
@@ -171,6 +168,56 @@ export class NegocianteFormComponent implements OnInit {
         });
 
       }
+    }
+
+    let nEndPag = 0, nEndEnt = 0, nEndPrin = 0;
+
+    this.negociante.enderecos.forEach((endereco) => {
+      if (endereco.tipoEndereco == 0)
+        nEndPrin++
+      if (endereco.tipoEndereco == 1)
+        nEndPag++
+      if (endereco.tipoEndereco == 2)
+        nEndEnt++
+    });
+
+    if (isValid && nEndPrin > 1) {
+      isValid = false;
+
+      const initialState = {
+        message: 'Selecione apenas 1 endereço do tipo principal',
+        title: 'Erro'
+      };
+
+      this.modalService.show(InfoDialogComponent, {
+        initialState
+      });
+    }
+
+    if (isValid && nEndPag > 1) {
+      isValid = false;
+
+      const initialState = {
+        message: 'Selecione apenas 1 endereço do tipo pagamento',
+        title: 'Erro'
+      };
+
+      this.modalService.show(InfoDialogComponent, {
+        initialState
+      });
+    }
+
+    if (isValid && nEndEnt > 1) {
+      isValid = false;
+
+      const initialState = {
+        message: 'Selecione apenas 1 endereço do tipo entrega',
+        title: 'Erro'
+      };
+
+      this.modalService.show(InfoDialogComponent, {
+        initialState
+      });
     }
 
     if (this.form.valid && isValid) {
@@ -201,6 +248,13 @@ export class NegocianteFormComponent implements OnInit {
         });
 
       });
+    }
+  }
+
+  onChangeTiponegociante(value) {
+    if (value.id != 0) {
+      this.negociante.dataNascimento = null;
+      this.negociante.sexo = null;
     }
   }
 

@@ -37,13 +37,14 @@
       <div class="row">
         <div myFormGroup="tipoNegociante" [required]="true" class="col-2">
           <label class="control-label" for="tipoNegociante">Tipo</label>
-          <ng-select [items]="tipoNegociante" bindLabel="descricao" bindValue="id" formControlName="tipoNegociante" [(ngModel)]="negociante.tipoNegociante"></ng-select>
+          <ng-select [items]="tipoNegociante" bindLabel="descricao" bindValue="id" formControlName="tipoNegociante" [(ngModel)]="negociante.tipoNegociante"
+            (change)="onChangeTiponegociante($event)"></ng-select>
           <div invalidMessage>
             <p *invalidType="'required'">Tipo é um campo obrigatório</p>
           </div>
         </div>
 
-        <div myFormGroup="_cpf" class="col-2" *ngIf="negociante.tipoNegociante == 0">
+        <div myFormGroup="_cpf" [required]="true" class="col-2" *ngIf="negociante.tipoNegociante == 0">
           <label class="control-label" for="_cpf">CPF / CNPJ</label>
           <p-inputMask mask="999.999.999-99" formControlName="_cpf" [(ngModel)]="negociante._cpf" #txtCpf></p-inputMask>
           <div invalidMessage>
@@ -51,7 +52,7 @@
           </div>
         </div>
 
-        <div myFormGroup="_cnpj" class="col-2" *ngIf="negociante.tipoNegociante == 1">
+        <div myFormGroup="_cnpj" [required]="true" class="col-2" *ngIf="negociante.tipoNegociante == 1">
           <label class="control-label" for="_cnpj">CPF / CNPJ</label>
           <p-inputMask mask="99.999.999/9999.99" formControlName="_cnpj" [(ngModel)]="negociante._cnpj" #txtCnpj></p-inputMask>
           <div invalidMessage>
@@ -62,6 +63,16 @@
         <div myFormGroup="_extOut" class="col-2" *ngIf="negociante.tipoNegociante == 2 || negociante.tipoNegociante == 3">
           <label class="control-label" for="_extOut">CPF / CNPJ</label>
           <input type="text" class="form-control" formControlName="_extOut" [(ngModel)]="negociante._extOut" #txtOutrosExterior>
+        </div>
+
+        <div myFormGroup="rg" class="col-2">
+          <label class="control-label" for="rg">RG</label>
+          <input type="text" myFormControl id="rg" formControlName="rg" [(ngModel)]="negociante.rg" [readonly]="negociante.tipoNegociante != 0">
+        </div>
+
+        <div myFormGroup="suframa" class="col-2">
+          <label class="control-label" for="suframa">Suframa</label>
+          <input type="text" myFormControl id="suframa" formControlName="suframa" [(ngModel)]="negociante.suframa">
         </div>
 
         <div myFormGroup="tipoRegimeTributacao" [required]="true" class="col-2">
@@ -80,31 +91,26 @@
           </div>
         </div>
 
+      </div>
+
+      <div class="row">
+
         <div myFormGroup="inscricaoEstadual" class="col-2">
           <label class="control-label" for="inscricaoEstadual">Inscrição Estadual</label>
           <input type="text" myFormControl id="rg" formControlName="inscricaoEstadual" [(ngModel)]="negociante.inscricaoEstadual">
         </div>
 
-        <div myFormGroup="suframa" class="col-2">
-          <label class="control-label" for="suframa">Suframa</label>
-          <input type="text" myFormControl id="suframa" formControlName="suframa" [(ngModel)]="negociante.suframa">
+        <div myFormGroup="inscricaoMunicipal" class="col-2">
+          <label class="control-label" for="inscricaoMunicipal">Inscrição Municipal</label>
+          <input type="text" myFormControl id="rg" formControlName="inscricaoMunicipal" [(ngModel)]="negociante.inscricaoMunicipal">
         </div>
 
-      </div>
-
-      <div class="row">
-
-        <div myFormGroup="rg" class="col-2">
-          <label class="control-label" for="rg">RG</label>
-          <input type="text" myFormControl id="rg" formControlName="rg" [(ngModel)]="negociante.rg">
+        <div myFormGroup="caixaPostal" class="col-2">
+          <label class="control-label" for="caixaPostal">Caixa Postal</label>
+          <input type="text" myFormControl id="caixaPostal" formControlName="caixaPostal" [(ngModel)]="negociante.caixaPostal">
         </div>
 
-        <div class="col-2">
-          <label class="control-label" for="dataNascimento">Data Nascimento</label>
-          <app-calendar formControlName="dataNascimento" [(ngModel)]="negociante.dataNascimento"></app-calendar>
-        </div>
-
-        <div myFormGroup="email" class="col-4">
+        <div myFormGroup="email" class="col-3">
           <label class="control-label" for="email">E-mail</label>
           <input type="text" myFormControl id="email" formControlName="email" [(ngModel)]="negociante.email">
           <div invalidMessage>
@@ -112,17 +118,18 @@
           </div>
         </div>
 
-        <div myFormGroup="homePage" class="col-4">
+        <div myFormGroup="homePage" class="col-3">
           <label class="control-label" for="homePage">Home Page</label>
           <input type="text" myFormControl id="homePage" formControlName="homePage" [(ngModel)]="negociante.homePage">
         </div>
 
       </div>
 
-      <div class="row">
-        <div myFormGroup="caixaPostal" class="col-2">
-          <label class="control-label" for="caixaPostal">Caixa Postal</label>
-          <input type="text" myFormControl id="caixaPostal" formControlName="caixaPostal" [(ngModel)]="negociante.caixaPostal">
+      <div class="row" *ngIf="negociante.tipoNegociante == 0">
+
+        <div class="col-2">
+          <label class="control-label" for="dataNascimento">Data Nascimento</label>
+          <app-calendar formControlName="dataNascimento" [(ngModel)]="negociante.dataNascimento"></app-calendar>
         </div>
 
         <div myFormGroup="sexo" class="col-3">

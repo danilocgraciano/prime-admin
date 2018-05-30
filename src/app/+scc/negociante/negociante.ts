@@ -12,6 +12,7 @@ export class Negociante {
     _cnpj:string;
     _extOut:string;
     inscricaoEstadual: string;
+    inscricaoMunicipal: string;
     rg: string;
     suframa: string;
     contribuinteIcms: boolean;
