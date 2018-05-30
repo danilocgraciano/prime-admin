@@ -5,7 +5,7 @@ export function ValidateCNPJ(control: AbstractControl) {
     var v = control.value;
 
     if ((v == null || v == ''))
-        return { valid: true };
+        return null;
 
     if (v != null)
         v = v.trim();

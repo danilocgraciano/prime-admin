@@ -152,10 +152,28 @@ export class NegocianteFormComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.flush();
 
-    if (this.form.valid) {
+    let isValid: boolean = true;
+
+    if (this.negociante.tipoNegociante != 2 && this.negociante.tipoNegociante != 3) {
+      if (this.negociante.cpfCnpj == null || this.negociante.cpfCnpj == '') {
+
+        isValid = false;
+
+        const initialState = {
+          message: 'CPF/CNPJ é um dado obrigatório',
+          title: 'Erro'
+        };
+
+        this.modalService.show(InfoDialogComponent, {
+          initialState
+        });
+
+      }
+    }
+
+    if (this.form.valid && isValid) {
       var result;
       var id = this.form.value.id;
       if (id) {
