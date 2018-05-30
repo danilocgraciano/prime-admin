@@ -10,6 +10,7 @@ import { LocaleSettings } from 'primeng/calendar';
 import { InputMask } from 'primeng/inputmask';
 import { ValidateCNPJ } from '../../../shared/form-validation/cnpj.validator';
 import { ValidateCPF } from '../../../shared/form-validation/cpf.validator';
+import * as CalendarConfig from '../../../shared/calendar/calendar.config';
 
 @Component({
   selector: 'app-negociante-form',
@@ -23,6 +24,7 @@ export class NegocianteFormComponent implements OnInit {
   form: FormGroup;
   title: string = 'Cadastro de Negociante';
   mode: string;
+  locale: any;
 
   @ViewChild("txtCpf") txtCpf: InputMask;
   @ViewChild("txtCnpj") txtCnpj: InputMask;
@@ -122,6 +124,8 @@ export class NegocianteFormComponent implements OnInit {
       });
 
     });
+
+    this.locale = CalendarConfig.locale;
   }
 
   refresh(negociante) {

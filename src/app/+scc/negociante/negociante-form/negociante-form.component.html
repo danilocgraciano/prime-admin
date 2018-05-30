@@ -129,7 +129,7 @@
 
         <div class="col-2">
           <label class="control-label" for="dataNascimento">Data Nascimento</label>
-          <app-calendar formControlName="dataNascimento" [(ngModel)]="negociante.dataNascimento"></app-calendar>
+          <p-calendar [locale]=locale dateFormat="dd/mm/yy" [(ngModel)]="negociante.dataNascimento" formControlName="dataNascimento"></p-calendar>
         </div>
 
         <div myFormGroup="sexo" class="col-3">
