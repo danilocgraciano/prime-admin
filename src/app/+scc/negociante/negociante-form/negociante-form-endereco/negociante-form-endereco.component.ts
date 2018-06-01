@@ -58,11 +58,23 @@ export class NegocianteFormEnderecoComponent implements OnInit {
         })
       })
     });
+
+    this.enderecoOld = this._endereco;
   }
 
   onDeleteClick(event, data: Endereco) {
     event.preventDefault();
     this.dataSource.splice(this.dataSource.indexOf(data), 1);
+  }
+
+  onMunicipioChange(event) {
+
+    let municipio = event.value;
+    let enderecoNew = this.enderecoOld;
+    enderecoNew.municipio = municipio;
+
+    this.dataSource[this.dataSource.indexOf(this.enderecoOld)] = enderecoNew;
+
   }
 
   onCepChange(event) {
@@ -91,6 +103,13 @@ export class NegocianteFormEnderecoComponent implements OnInit {
     this._endereco.municipio = cep.municipio;
     this._endereco.numero = '';
     this._endereco.municipio.pais = cep.municipio.pais;
+  }
+
+  isCEPExterior() {
+    if (this._endereco.cep.codigo == '99999-999')
+      return true;
+
+    return false;
   }
 
   onShowClick(event) {

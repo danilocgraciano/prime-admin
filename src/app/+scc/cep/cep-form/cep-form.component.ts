@@ -69,7 +69,26 @@ export class CepFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid) {
+
+    let isValid: boolean = true;
+    if (this.cep.codigo == '99999-999') {
+
+      isValid = false;
+
+      const initialState = {
+        message: 'O CEP "99999-999" é um CEP reservado e não pode ser alterado!',
+        title: 'Erro'
+      };
+
+      this.modalService.show(InfoDialogComponent, {
+        initialState
+      });
+
+    }
+
+    if (this.form.valid && isValid) {
+
+
       var result;
       var id = this.form.value.id;
       if (id) {

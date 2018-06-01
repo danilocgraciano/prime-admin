@@ -1,4 +1,4 @@
-<p-dataTable [value]="dataSource" [editable]=true [immutable]=false emptyMessage="Nenhum registro encontrado.">
+<p-dataTable #dataTable [value]="dataSource" [editable]=true [immutable]=false emptyMessage="Nenhum registro encontrado.">
 
   <p-column field="tipoEndereco" header="Tipo" [editable]="true" [style]="{'width':'5%'}">
     <ng-template let-col let-endereco="rowData" pTemplate="editor">
@@ -44,10 +44,23 @@
     </ng-template>
   </p-column>
 
-  <p-column field="municipio" header="Município" [style]="{'width':'10%'}">
+  <p-column field="municipio" header="Município" [editable]="true" [style]="{'width':'10%'}">
+
     <ng-template let-col let-endereco="rowData" pTemplate="body">
       {{endereco[col.field]?.nome}} - {{endereco[col.field]?.uf?.sigla}}
     </ng-template>
+
+    <ng-template let-col let-endereco="rowData" pTemplate="editor">
+
+      <p-dropdown *ngIf="endereco.cep.codigo == '99999-999'" [(ngModel)]="endereco[col.field]" [options]="municipio$ | async" [autoWidth]=false
+        optionLabel="nome" dataKey="id" [style]="{'width':'100%'}" required="true" appendTo="body" [filter]="true" (onFocus)="enderecoOld = endereco"
+        (onChange)="onMunicipioChange($event)"></p-dropdown>
+
+      <span class="ui-cell-data ng-star-inserted" *ngIf="endereco.cep.codigo != '99999-999'">
+        {{endereco[col.field]?.nome}} - {{endereco[col.field]?.uf?.sigla}}
+      </span>
+    </ng-template>
+
   </p-column>
 
   <p-column field="municipio" header="País" [style]="{'width':'5%'}">
@@ -146,7 +159,7 @@
           <div class="form-group" formGroupName="municipio">
             <p-dropdown [(ngModel)]="_endereco.municipio" [options]="municipio$ | async" [autoWidth]=false optionLabel="nome" dataKey="id"
               required="true" appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado"
-              [autoDisplayFirst]="false" [disabled]="true"></p-dropdown>
+              [autoDisplayFirst]="false" [disabled]="!isCEPExterior()"></p-dropdown>
           </div>
         </div>
 
@@ -154,8 +167,8 @@
           <label for="pais" class="required">País</label>
           <div class="form-group" formGroupName="municipio">
             <div class="form-group" formGroupName="pais">
-              <p-dropdown [(ngModel)]="_endereco.municipio.pais" [options]="pais$ | async" [autoWidth]=false optionLabel="descricao"
-                dataKey="id" required="true" appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado"
+              <p-dropdown [(ngModel)]="_endereco.municipio.pais" [options]="pais$ | async" [autoWidth]=false optionLabel="descricao" dataKey="id"
+                required="true" appendTo="body" [filter]="true" formControlName="id" emptyFilterMessage="Nenhum registro encontrado"
                 [autoDisplayFirst]="false" [disabled]="true"></p-dropdown>
             </div>
           </div>

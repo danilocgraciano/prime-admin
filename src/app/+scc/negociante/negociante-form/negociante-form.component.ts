@@ -185,6 +185,19 @@ export class NegocianteFormComponent implements OnInit {
         nEndEnt++
     });
 
+    if (nEndPrin == 0 && nEndPag == 0 && nEndEnt == 0 && (this.negociante.tipoNegociante != 2 && this.negociante.tipoNegociante != 3)) {
+      isValid = false;
+
+      const initialState = {
+        message: 'Endereço é um dado obrigatório',
+        title: 'Erro'
+      };
+
+      this.modalService.show(InfoDialogComponent, {
+        initialState
+      });
+    }
+
     if (isValid && nEndPrin > 1) {
       isValid = false;
 
