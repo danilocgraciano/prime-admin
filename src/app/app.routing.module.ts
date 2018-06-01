@@ -25,6 +25,11 @@ const APP_ROUTES: Routes = [
       {
         path: '',
         loadChildren: './+scc/scc.module#SccModule'
+      },
+      //SCA
+      {
+        path: '',
+        loadChildren: './+sca/sca.module#ScaModule'
       }
     ]
   },
