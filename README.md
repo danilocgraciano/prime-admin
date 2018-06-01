@@ -11,5 +11,6 @@ Assim pode-se focar diretamente nos requisitos do projeto.
 * Angular 6
 * Bootstrap 4
 * DataTables
+* PrimeNG
 
 [dashboard]: https://getbootstrap.com/docs/4.0/examples/dashboard/
