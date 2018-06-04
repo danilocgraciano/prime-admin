@@ -14,11 +14,11 @@ export class SidebarComponent implements OnInit {
       label: 'Controle de Cadastros',
       leaf: false,
       items: [
-        { id: 1, label: 'Negociantes', icon: 'oi oi-person', disabled: false, url: 'negociante', leaf: true },
-        { id: 2, label: 'CEP', icon: 'oi oi-chevron-right', disabled: false, url: 'cep', leaf: true },
-        { id: 3, label: 'Município', icon: 'oi oi-chevron-right', disabled: false, url: 'municipio', leaf: true },
-        { id: 4, label: 'UF', icon: 'oi oi-chevron-right', disabled: false, url: 'uf', leaf: true },
-        { id: 5, label: 'País', icon: 'oi oi-chevron-right', disabled: false, url: 'pais', leaf: true },
+        { id: 1, label: 'Negociantes', icon: '', disabled: false, url: 'negociante', leaf: true },
+        { id: 2, label: 'CEP', icon: '', disabled: false, url: 'cep', leaf: true },
+        { id: 3, label: 'Município', icon: '', disabled: false, url: 'municipio', leaf: true },
+        { id: 4, label: 'UF', icon: '', disabled: false, url: 'uf', leaf: true },
+        { id: 5, label: 'País', icon: '', disabled: false, url: 'pais', leaf: true },
       ]
     },
     {
@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit {
       label: 'Controle de Ambiente',
       leaf: false,
       items: [
-        { id: 7, label: 'Usuários', icon: 'oi oi-people', disabled: false, url: 'usuario', leaf: true },
+        { id: 7, label: 'Usuários', icon: '', disabled: false, url: 'usuario', leaf: true },
       ]
     },
     {
@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit {
       leaf: false,
       items: [
         {
-          id: 9, label: 'Simple Table', icon: 'oi oi-chevron-right', disabled: false, url: 'simpleTable', leaf: true
+          id: 9, label: 'Simple Table', icon: '', disabled: false, url: 'simpleTable', leaf: true
         }
       ]
     }

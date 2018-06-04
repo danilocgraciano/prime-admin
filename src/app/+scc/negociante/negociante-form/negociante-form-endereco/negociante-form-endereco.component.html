@@ -13,7 +13,7 @@
   <p-column field="cep" header="CEP" [editable]="true" [style]="{'width':'5%'}">
     <ng-template let-col let-endereco="rowData" pTemplate="editor">
       <p-dropdown [(ngModel)]="endereco[col.field]" [options]="cep$ | async" [autoWidth]=false optionLabel="codigo" dataKey="id"
-        [style]="{'width':'100%'}" required="true" appendTo="body" [filter]="true" (onFocus)="enderecoOld = endereco" (onChange)="onCepChange($event)"></p-dropdown>
+        [style]="{'width':'100%'}" required="true" appendTo="body" [filter]="true" (onFocus)="enderecoOld = endereco" (onChange)="onCepChange($event)" emptyFilterMessage="Nenhum registro encontrado"></p-dropdown>
     </ng-template>
     <ng-template let-col let-endereco="rowData" pTemplate="body">
       {{endereco?.cep?.codigo}}
