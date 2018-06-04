@@ -1,5 +1,13 @@
 <nav class="sidebar">
+
   <ul class="navbar-nav">
-    <app-sidebar-item *ngFor="let item of menu" [menuItem]=item></app-sidebar-item>
+    <li class="nav-item" *ngFor="let item of menu">
+      <a class="nav-link" href="{{'#' + item.id}}" data-toggle="collapse" aria-expanded="false">
+        <i [class]=item.icon></i>
+        {{item.label}}
+      </a>
+      <app-sidebar-item [items]=item.items [toggleId]=item.id></app-sidebar-item>
+    </li>
+
   </ul>
 </nav>

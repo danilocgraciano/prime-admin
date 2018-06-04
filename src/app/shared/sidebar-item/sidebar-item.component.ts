@@ -9,7 +9,8 @@ declare var $;
 })
 export class SidebarItemComponent implements OnInit {
 
-  @Input() menuItem: any;
+  @Input() items: any;
+  @Input() toggleId: any;
 
   constructor(private router: Router) { }
 
@@ -30,13 +31,13 @@ export class SidebarItemComponent implements OnInit {
     });
   }
 
-  onClick(event) {
+  onClick(event, item) {
     event.preventDefault();
-    this.router.navigate([this.menuItem.url]);
+    this.router.navigate([item.url]);
   }
 
-  isActive(): boolean {
-    if (this.router.url.replace("/", "").startsWith(this.menuItem.url))
+  isActive(item): boolean {
+    if (this.router.url.replace("/", "").startsWith(item.url) && item.leaf)
       return true;
     return false;
   }

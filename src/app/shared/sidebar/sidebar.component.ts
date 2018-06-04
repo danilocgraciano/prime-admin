@@ -9,13 +9,38 @@ declare var $;
 export class SidebarComponent implements OnInit {
 
   menu: Array<any> = [
-    { title: 'Usuários', icon: 'oi oi-people', selected: false, url: 'usuario' },
-    { title: 'Negociantes', icon: 'oi oi-person', selected: false, url: 'negociante' },
-    { title: 'CEP', icon: 'oi oi-chevron-right', selected: false, url: 'cep' },
-    { title: 'Município', icon: 'oi oi-chevron-right', selected: false, url: 'municipio' },
-    { title: 'UF', icon: 'oi oi-chevron-right', selected: false, url: 'uf' },
-    { title: 'País', icon: 'oi oi-chevron-right', selected: false, url: 'pais' },
-    { title: 'Simple Table', icon: 'oi oi-chevron-right', selected: false, url: 'simpleTable' }
+    {
+      id: 0,
+      label: 'Controle de Cadastros',
+      leaf: false,
+      items: [
+        { id: 1, label: 'Negociantes', icon: 'oi oi-person', disabled: false, url: 'negociante', leaf: true },
+        { id: 2, label: 'CEP', icon: 'oi oi-chevron-right', disabled: false, url: 'cep', leaf: true },
+        { id: 3, label: 'Município', icon: 'oi oi-chevron-right', disabled: false, url: 'municipio', leaf: true },
+        { id: 4, label: 'UF', icon: 'oi oi-chevron-right', disabled: false, url: 'uf', leaf: true },
+        { id: 5, label: 'País', icon: 'oi oi-chevron-right', disabled: false, url: 'pais', leaf: true },
+      ]
+    },
+    {
+      id: 6,
+      label: 'Controle de Ambiente',
+      leaf: false,
+      items: [
+        { id: 7, label: 'Usuários', icon: 'oi oi-people', disabled: false, url: 'usuario', leaf: true },
+      ]
+    },
+    {
+      id: 8,
+      label: 'Outros',
+      leaf: false,
+      items: [
+        {
+          id: 9, label: 'Simple Table', icon: 'oi oi-chevron-right', disabled: false, url: 'simpleTable', leaf: true
+        }
+      ]
+    }
+
+
   ]
 
   constructor() { }

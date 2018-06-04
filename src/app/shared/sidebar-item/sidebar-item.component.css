@@ -16,7 +16,7 @@ li a:hover {
     background: #0866c6;
 }
 
-li.active > a, a[aria-expanded="true"] {
+li.active>a, a[aria-expanded="true"] {
     color: #fff;
     background: #0866c6;
 }

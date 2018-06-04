@@ -1,6 +1,16 @@
-<li class="nav-item">
-  <a [ngClass]="{ 'nav-link': true,'active': isActive()}" [href]=menuItem.url (click)="onClick($event)">
-      <i [class]=menuItem.icon></i>
-      {{menuItem.title}} 
+<ul class="navbar-nav collapse" [id]=toggleId>
+  <li [ngClass]="{ 'nav-item': true,'active': isActive(item)}" *ngFor="let item of items">
+
+    <a class="nav-item" [href]=item.url (click)="onClick($event,item)" *ngIf="item.leaf">
+      <i [class]=item.icon></i>
+      {{item.label}}
     </a>
-</li>
+
+    <a class="nnav-item" href="{{'#' + item.id}}" data-toggle="collapse" aria-expanded="false" *ngIf="!item.leaf">
+      <i [class]=item.icon></i>
+      {{item.label}}
+    </a>
+
+    <app-sidebar-item [items]=item.items [toggleId]=item.id></app-sidebar-item>
+  </li>
+</ul>
