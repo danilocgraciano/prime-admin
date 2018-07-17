@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { InfoDialogComponent } from '../../../shared/dialog/info-dialog/info-dialog.component';
@@ -31,7 +32,9 @@ export class CepFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.municipio$ = this.municipioService.search().map(obj => obj['data']);
+    this.municipio$ = this.municipioService.search().pipe(
+      map(obj => obj['data'])
+    );
 
     this.form = this.formBuilder.group({
       id: ['', []],

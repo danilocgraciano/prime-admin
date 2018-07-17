@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from "@angular/router";
 
 
@@ -21,9 +22,11 @@ export class AuthService {
 
     return this.http.post('/api/login', JSON.stringify(usuario),
       { headers: { 'Content-Type': 'application/json' } })
-      .do(res => {
-        this.setSession(res);
-      });
+      .pipe(
+        tap(res => {
+          this.setSession(res);
+        })
+      );
 
   }
 

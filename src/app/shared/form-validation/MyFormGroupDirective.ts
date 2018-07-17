@@ -3,7 +3,8 @@
  */
 import { Directive, OnInit, OnDestroy, Input, ElementRef, Renderer2 } from "@angular/core";
 import { AbstractControl, ControlContainer, FormGroupDirective } from "@angular/forms";
-import { Subscription ,  Observable } from "rxjs";
+import { Subscription, Observable, merge, of } from "rxjs";
+import { map } from "rxjs/operators";
 
 
 
@@ -24,15 +25,15 @@ export class MyFormGroupDirective implements OnInit, OnDestroy {
     ngOnInit() {
 
         this.render.addClass(this._el.nativeElement, 'form-group');
-        if (this.required){
+        if (this.required) {
             this.render.addClass(this._el.nativeElement, 'required');
         }
 
         this.control = this.form.get(this.myFormGroup);
-        let formSubmit$ = (<FormGroupDirective>this._fg).ngSubmit.map(() => {
+        let formSubmit$ = (<FormGroupDirective>this._fg).ngSubmit.pipe(map(() => {
             this.hasSubmitted = true;
-        });
-        this.controlValue$ = Observable.merge(this.control.valueChanges, Observable.of(''), formSubmit$);
+        }));
+        this.controlValue$ = merge(this.control.valueChanges, of(''), formSubmit$);
         this.controlSubscription = this.controlValue$.subscribe(() => {
             this.setClass();
         });

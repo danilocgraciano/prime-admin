@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { AbstractTableComponent } from '../table/abstract.table.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Rx';
+import { Observable, fromEvent, interval } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 
 import { DataTableSetup } from '../table/DataTableSetup';
@@ -21,7 +22,7 @@ export class UsuarioComponent extends AbstractTableComponent implements AfterVie
   static this: any;
   url: string = '/usuario/';
   title: string;
-  private bsModalRef: BsModalRef;c
+  private bsModalRef: BsModalRef; c
 
   @ViewChild('nome') txtNome: ElementRef;
   @ViewChild('email') txtEmail: ElementRef;
@@ -173,11 +174,15 @@ export class UsuarioComponent extends AbstractTableComponent implements AfterVie
       ]
     }));
 
-    Observable.fromEvent(this.txtNome.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
+    fromEvent(this.txtNome.nativeElement, 'keyup').pipe(
+      debounceTime(500)
+    ).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent(this.txtEmail.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
+    fromEvent(this.txtEmail.nativeElement, 'keyup').pipe(
+      debounceTime(500)
+    ).subscribe((x) => {
       this.myTable.draw();
     });
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractTableComponent } from '../../shared/table/abstract.table.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { InfoDialogComponent } from '../../shared/dialog/info-dialog/info-dialog.component';

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class NegocianteService {
@@ -13,15 +14,17 @@ export class NegocianteService {
   }
 
   readById(id: number) {
-    return this.http.get(this.getUrl(id)).map((data) => {
-      let negociante = data["data"];
+    return this.http.get(this.getUrl(id)).pipe(
+      map((data) => {
+        let negociante = data["data"];
 
-      if (negociante["dataNascimento"] != null && negociante["dataNascimento"] != '')
-        negociante["dataNascimento"] = new Date(negociante["dataNascimento"] + 'T00:00:00');
+        if (negociante["dataNascimento"] != null && negociante["dataNascimento"] != '')
+          negociante["dataNascimento"] = new Date(negociante["dataNascimento"] + 'T00:00:00');
 
-      data["data"] = negociante;
-      return data;
-    });
+        data["data"] = negociante;
+        return data;
+      })
+    );
   }
 
   create(obj) {

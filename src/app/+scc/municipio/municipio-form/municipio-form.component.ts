@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -35,8 +36,8 @@ export class MunicipioFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.uf$ = this.ufService.search().map(obj => obj['data']);
-    this.pais$ = this.paisService.search().map(obj => obj['data']);
+    this.uf$ = this.ufService.search().pipe(map(obj => obj['data']));
+    this.pais$ = this.paisService.search().pipe(map(obj => obj['data']));
 
     this.form = this.formBuilder.group({
       id: ['', []],

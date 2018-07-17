@@ -142,13 +142,13 @@ export class NegocianteFormComponent implements OnInit {
 
   flush() {
 
-    if (this.negociante.tipoNegociante == 0)
+    if (this.negociante.tipoNegociante == 0)//FISICA
       this.negociante.cpfCnpj = this.txtCpf.value;
 
-    if (this.negociante.tipoNegociante == 1)
+    if (this.negociante.tipoNegociante == 1)//JURIDICA
       this.negociante.cpfCnpj = this.txtCnpj.value;
 
-    if (this.negociante.tipoNegociante == 2 || this.negociante.tipoNegociante == 3)
+    if (this.negociante.tipoNegociante == 2 || this.negociante.tipoNegociante == 3)//EXTERIOR / OUTROS
       this.negociante.cpfCnpj = this.txtOutrosExterior.nativeElement.value;
   }
 
@@ -157,7 +157,7 @@ export class NegocianteFormComponent implements OnInit {
 
     let isValid: boolean = true;
 
-    if (this.negociante.tipoNegociante != 2 && this.negociante.tipoNegociante != 3) {
+    if (this.negociante.tipoNegociante != 2 && this.negociante.tipoNegociante != 3) {//EXTERIOR / OUTROS
       if (this.negociante.cpfCnpj == null || this.negociante.cpfCnpj == '') {
 
         isValid = false;
@@ -177,11 +177,11 @@ export class NegocianteFormComponent implements OnInit {
     let nEndPag = 0, nEndEnt = 0, nEndPrin = 0;
 
     this.negociante.enderecos.forEach((endereco) => {
-      if (endereco.tipoEndereco == 0)
+      if (endereco.tipoEndereco == 0)//PRINCIPAL
         nEndPrin++
-      if (endereco.tipoEndereco == 1)
+      if (endereco.tipoEndereco == 1)//PAGAMENTO
         nEndPag++
-      if (endereco.tipoEndereco == 2)
+      if (endereco.tipoEndereco == 2)//ENTREGA
         nEndEnt++
     });
 

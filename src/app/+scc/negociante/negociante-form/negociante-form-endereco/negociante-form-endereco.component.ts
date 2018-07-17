@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Endereco } from '../../endereco';
 import { CepService } from '../../../cep/cep.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Cep } from '../../../cep/cep';
 import { MunicipioService } from '../../../municipio/municipio.service';
 import { PaisService } from '../../../pais/pais.service';
@@ -37,9 +38,9 @@ export class NegocianteFormEnderecoComponent implements OnInit {
   constructor(private cepService: CepService, private municipioService: MunicipioService, private paisService: PaisService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.cep$ = this.cepService.search().map(obj => obj['data']);
-    this.municipio$ = this.municipioService.search().map(obj => obj['data']);
-    this.pais$ = this.paisService.search().map(obj => obj['data']);
+    this.cep$ = this.cepService.search().pipe(map(obj => obj['data']));
+    this.municipio$ = this.municipioService.search().pipe(map(obj => obj['data']));
+    this.pais$ = this.paisService.search().pipe(map(obj => obj['data']));
 
     this.form = this.formBuilder.group({
       id: ['', []],

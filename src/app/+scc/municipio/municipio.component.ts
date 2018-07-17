@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AbstractTableComponent } from '../../shared/table/abstract.table.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Rx';
+import { Observable, fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { InfoDialogComponent } from '../../shared/dialog/info-dialog/info-dialog.component';
@@ -185,19 +186,27 @@ export class MunicipioComponent extends AbstractTableComponent implements OnInit
       ]
     }));
 
-    Observable.fromEvent(this.txtNome.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
+    fromEvent(this.txtNome.nativeElement, 'keyup').pipe(
+      debounceTime(500)
+    ).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent(this.txtCodigoMunicipal.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
+    fromEvent(this.txtCodigoMunicipal.nativeElement, 'keyup').pipe(
+      debounceTime(500)
+    ).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent(this.txtUf.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
+    fromEvent(this.txtUf.nativeElement, 'keyup').pipe(
+      debounceTime(500)
+    ).subscribe((x) => {
       this.myTable.draw();
     });
 
-    Observable.fromEvent(this.txtPais.nativeElement, 'keyup').debounceTime(500).subscribe((x) => {
+    fromEvent(this.txtPais.nativeElement, 'keyup').pipe(
+      debounceTime(500)
+    ).subscribe((x) => {
       this.myTable.draw();
     });
   }
