@@ -8,7 +8,7 @@ Assim pode-se focar diretamente nos requisitos do projeto.
 
 ## Tecnologias Utilizadas
 
-* Angular 6
+* Angular 7
 * Bootstrap 4
 * DataTables
 * PrimeNG
